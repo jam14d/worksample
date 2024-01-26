@@ -5,8 +5,8 @@ import numpy as np
 from scipy.signal import find_peaks
 
 # Change path here, this is where your data is
-path_det = "/Users/jmortel/Downloads/detection results_allmeasurements_3766"
-path_ano = "/Users/jmortel/Downloads/annotation results_allmeasurements_3766"
+path_det = "/Users/jmortel/Downloads/detection results"
+path_ano = "/Users/jmortel/Downloads/annotation results"
 os.chdir(path_det)
 
 # Create a directory to store the plots (if it's helpful)
