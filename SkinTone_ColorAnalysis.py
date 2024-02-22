@@ -2,77 +2,57 @@ import cv2
 import numpy as np
 
 '''
+IN PROGRESS
 
 A simple, fun project inspired by the trend of Personal Color Analysis popular in Korea.
 This script finds the average skin tone in an image, determines its complementary color, 
-and then displays the original image alongside a block of the complementary color.
+and then displays the original image, its mask, and a block of the complementary color.
 
 '''
 
-
-def find_average_skin_tone(image_path):
-    # Load image
+def create_skin_mask(image_path):
+    # Load the image
     image = cv2.imread(image_path)
-    
-    # Convert to YCbCr color space
-    ycbcr_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
-    
-    # Define skin tone range in YCbCr
+
+    # Convert the image from BGR to YCrCb color space
+    ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+
+    # Define the minimum and maximum YCrCb values for skin tones
     min_YCrCb = np.array([0, 133, 77], np.uint8)
     max_YCrCb = np.array([255, 173, 127], np.uint8)
-    
-    # Find skin pixels
-    skin_mask = cv2.inRange(ycbcr_image, min_YCrCb, max_YCrCb)
-    skin_pixels = image[skin_mask == 255]
-    
-    # Calculate average color
-    average_color = np.mean(skin_pixels, axis=0)
-    
-    return np.uint8(average_color)
 
-def find_complementary_color(rgb_color):
-    # Convert RGB to HSV
-    hsv_color = cv2.cvtColor(np.uint8([[rgb_color]]), cv2.COLOR_RGB2HSV)
-    
-    # Adjust Hue to get the complementary color
-    hsv_color[0][0][0] = (hsv_color[0][0][0] + 90) % 180  # Adjust if necessary
-    
-    # Convert back to RGB
-    complementary_rgb = cv2.cvtColor(hsv_color, cv2.COLOR_HSV2RGB)
-    
-    return complementary_rgb[0][0]
+    # Create a mask that identifies the skin based on YCrCb range
+    skin_mask = cv2.inRange(ycrcb_image, min_YCrCb, max_YCrCb)
 
-def display_image_with_complementary_color(image_path, complementary_color):
-    # Load the original image
-    original_image = cv2.imread(image_path)
-    
-    # Create a blank image with the same height as the original and double the width
-    height, width, channels = original_image.shape
-    new_image = np.zeros((height, 2*width, channels), np.uint8)
-    
-    # Fill the right half with the complementary color
-    new_image[:, width:] = complementary_color
-    
-    # Copy the original image to the left half of the new image
-    new_image[:, :width] = original_image
-    
-    # Display the result
-    cv2.imshow("Original + Complementary Color", new_image)
+    # Apply the mask to the image to get the skin region
+    skin = cv2.bitwise_and(image, image, mask=skin_mask)
+
+    # Find the average color of skin
+    # We first convert the mask to boolean, then find indices where mask is True
+    mask_bool = skin_mask.astype(bool)
+    skin_pixels = image[mask_bool]
+
+    # Compute the average color of skin pixels
+    average_color = np.mean(skin_pixels, axis=0).astype(np.uint8)
+    print("Average skin color (BGR):", average_color)
+
+    # Calculate the complementary color of the average skin tone
+    complementary_color = np.array([255, 255, 255], np.uint8) - average_color
+    print("Complementary color (BGR):", complementary_color)
+
+    # Create an image filled with the complementary color
+    complementary_color_image = np.full((100, 100, 3), complementary_color, np.uint8)
+
+    # Display the original image, the mask, the detected skin, and the complementary color
+    cv2.imshow('Original Image', image)
+    cv2.imshow('Skin Mask', skin_mask)
+    cv2.imshow('Skin Detection Result', skin)
+    cv2.imshow('Complementary Color', complementary_color_image)
+
+    # Wait for a key press and then close all windows
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    image_path = "/Users/jamieannemortel/Downloads/IMG_6440 (1).jpg"
-    average_skin_tone = find_average_skin_tone(image_path)
-    print("Average Skin Tone (RGB):", average_skin_tone)
-    
-    complementary_color = find_complementary_color(average_skin_tone)
-    print("Complementary Color (RGB):", complementary_color)
-    
-    cheese = display_image_with_complementary_color(image_path, complementary_color)
-    
-    # Wait for user to press any key 
-    cv2.waitKey(0) 
-  
-    # Close the cheese (displayed image)
-    cv2.destroyWindow("cheese") 
+# Replace 'path_to_your_image.jpg' with the path to the image you want to process
+create_skin_mask('/Users/jamieannemortel/Desktop/main-qimg-134e3bf89fff27bf56bdbd04e7dbaedf.webp')
+
