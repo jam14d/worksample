@@ -70,10 +70,9 @@ if __name__ == "__main__":
     print("Complementary Color (RGB):", complementary_color)
     
     cheese = display_image_with_complementary_color(image_path, complementary_color)
-    # we will wait for user to press any key 
+    
+    # Wait for user to press any key 
     cv2.waitKey(0) 
   
-    # after user pressed any key only 'I2' named 
-    # window will be closed and another image 
-    # remains as it is. 
+    # Close the cheese (displayed image)
     cv2.destroyWindow("cheese") 
