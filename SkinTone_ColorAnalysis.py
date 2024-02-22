@@ -69,4 +69,11 @@ if __name__ == "__main__":
     complementary_color = find_complementary_color(average_skin_tone)
     print("Complementary Color (RGB):", complementary_color)
     
-    display_image_with_complementary_color(image_path, complementary_color)
+    cheese = display_image_with_complementary_color(image_path, complementary_color)
+    # we will wait for user to press any key 
+    cv2.waitKey(0) 
+  
+    # after user pressed any key only 'I2' named 
+    # window will be closed and another image 
+    # remains as it is. 
+    cv2.destroyWindow("cheese") 
