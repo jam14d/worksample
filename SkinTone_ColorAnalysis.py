@@ -54,5 +54,5 @@ def create_skin_mask(image_path):
     cv2.destroyAllWindows()
 
 # Replace 'path_to_your_image.jpg' with the path to the image you want to process
-create_skin_mask('/Users/jamieannemortel/Desktop/main-qimg-134e3bf89fff27bf56bdbd04e7dbaedf.webp')
+create_skin_mask('path_to_your_image.jpg')
 
