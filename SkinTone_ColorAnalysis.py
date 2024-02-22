@@ -5,7 +5,7 @@ import numpy as np
 
 A simple, fun project inspired by the trend of Personal Color Analysis popular in Korea.
 This script finds the average skin tone in an image, determines its complementary color, 
-and then displaying the original image alongside a block of the complementary color.
+and then displays the original image alongside a block of the complementary color.
 
 '''
 
