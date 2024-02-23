@@ -15,6 +15,8 @@ def create_skin_mask(image_path):
     image = cv2.imread(image_path)
 
     # Convert the image from BGR to YCrCb color space
+    # YCrCb is often used in skin color detection because it separates the luminance (brightness) component (Y) from the chrominance (color) components (Cr and Cb), 
+    # making it easier to identify colors
     ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
 
     # Define the minimum and maximum YCrCb values for skin tones
@@ -35,7 +37,8 @@ def create_skin_mask(image_path):
     # Compute the average color of skin pixels
     average_color = np.mean(skin_pixels, axis=0).astype(np.uint8)
     print("Average skin color (BGR):", average_color)
-
+    
+    '''NEEDS WORK'''
     # Calculate the complementary color of the average skin tone
     complementary_color = np.array([255, 255, 255], np.uint8) - average_color
     print("Complementary color (BGR):", complementary_color)
