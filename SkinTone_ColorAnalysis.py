@@ -3,18 +3,18 @@ import numpy as np
 
 '''
 IN PROGRESS
+
 A simple, fun project inspired by the trend of Personal Color Analysis popular in Korea.
 This script finds the average skin tone in an image, determines its complementary color, 
 and then displays the original image, its mask, and a block of the complementary color.
+
 '''
 
 def create_skin_mask(image_path):
     # Load the image
     image = cv2.imread(image_path)
-'''
-YCrCb is often used in skin color detection because it separates the luminance (brightness) component (Y) from the chrominance (color) components (Cr and Cb), 
-'''
-    #Convert the image from BGR to YCrCb color space
+
+    # Convert the image from BGR to YCrCb color space
     ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
 
     # Define the minimum and maximum YCrCb values for skin tones
@@ -35,16 +35,7 @@ YCrCb is often used in skin color detection because it separates the luminance (
     # Compute the average color of skin pixels
     average_color = np.mean(skin_pixels, axis=0).astype(np.uint8)
     print("Average skin color (BGR):", average_color)
-    
-'''
-In the study of color theory, a complementary color is one that, when mixed with the original color, 
-results in a neutral shade—such as white, black, or gray—depending on the specific color system in use. 
-Within the context of the RGB color model, the complementary color can be determined by subtracting the values of 
-each RGB component (Red, Green, Blue) of the original color from the highest possible value for those components, 
-which is 255 in an 8-bit color system. This approach is employed by the script to find the complementary color for the calculated average skin tone.
-For instance, if the determined average skin color is [150, 100, 50] when expressed in BGR format, the calculation for the complementary color 
-would involve subtracting these values from 255, resulting in a complementary color of [105, 155, 205]
-'''
+
     # Calculate the complementary color of the average skin tone
     complementary_color = np.array([255, 255, 255], np.uint8) - average_color
     print("Complementary color (BGR):", complementary_color)
@@ -63,5 +54,4 @@ would involve subtracting these values from 255, resulting in a complementary co
     cv2.destroyAllWindows()
 
 # Replace 'path_to_your_image.jpg' with the path to the image you want to process
-create_skin_mask('path_to_your_image.jpg')
-
+create_skin_mask('/Users/jamieannemortel/Desktop/main-qimg-134e3bf89fff27bf56bdbd04e7dbaedf.webp')
