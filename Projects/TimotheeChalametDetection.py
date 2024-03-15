@@ -28,6 +28,8 @@ model = Sequential([
     Dense(1, activation='sigmoid')  # Binary output
 ])
 
+'''IN PROGRESS'''
+
 # Data preprocessing and augmentation setup
 data_augmentation = tf.keras.Sequential([
   tf.keras.layers.experimental.preprocessing.Rescaling(1./255),
