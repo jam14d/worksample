@@ -1,5 +1,8 @@
 ''In progress'''
 
+Refer to Pipeline_Template for pipeline structure 
+
+
 pip3 install matplotlib, scikit-image, tensorflow
 
 

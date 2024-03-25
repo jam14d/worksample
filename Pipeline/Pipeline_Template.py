@@ -3,11 +3,6 @@
 Simple pipeline that takes a string and turns it into an array of characters with each caracter capitalized. 
 """
 
-# Top level Pipeline class with an ‘add’ method that accepts instances of other classes
-pipeline = Pipeline()
-pipeline.add(StringReader())
-pipeline.add(CharacterCapitalizer())
-
 class StringReader:
     def process(self, text):
         return text
@@ -28,6 +23,17 @@ class Pipeline:
             input = stage.process(input)
         return input
 
+# Instantiate the pipeline
+pipeline = Pipeline()
+
+# ‘add’ method that accepts instances of other classes
+pipeline.add(StringReader())
+pipeline.add(CharacterCapitalizer())
+
+# Input string
 input_string = "I need a job"
+
+# Execute the pipeline
 output = pipeline.execute(input_string)
+
 print(output)
