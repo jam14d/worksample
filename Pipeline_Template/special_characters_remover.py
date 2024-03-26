@@ -1,7 +1,10 @@
 import re
-#re — Regular expression operations
+# re — Regular expression operations
 
 class SpecialCharactersRemover:
     def process(self, text):
-        """Removes any character that is not a letter (a-z, A-Z) or a number (0-9) from the text."""
-        return re.sub(r'[^a-zA-Z0-9]', '', text)
+        """
+        Removes any character that is not a letter (a-z, A-Z) from the text. 
+        This includes numbers!
+        """
+        return re.sub(r'[^a-zA-Z]', '', text)
