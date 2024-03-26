@@ -22,6 +22,6 @@ To ensure proper functionality of the pipeline, place both `dna_generator.py` an
 
 ## Example
 
-Given an input string "Help Jamie Get a Job!", the pipeline will first convert this string into a simulated DNA sequence. Then, the DNA sequence will be transcribed into an RNA sequence by `rna_transcriber.py`.
+Given an input string "Hello World!", the pipeline will first convert this string into a simulated DNA sequence. Then, the DNA sequence will be transcribed into an RNA sequence by `rna_transcriber.py`.
 
 Please note: The specific logic and parameters for conversion and transcription are defined within the respective scripts. Review the script documentation for detailed information on customization options and advanced usage.
