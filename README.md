@@ -1,4 +1,4 @@
-# This repository houses a diverse collection of projects, ranging from simple scripts to a personal project pipeline.
+# This repository houses a collection of projects, ranging from simple scripts to a personal project pipeline.
 
 ## DNA and RNA Transcription Pipeline
 
