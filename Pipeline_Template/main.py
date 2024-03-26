@@ -2,6 +2,7 @@ from string_reader import StringReader
 from character_capitalizer import CharacterCapitalizer
 from dna_base_converter import DNABaseConverter
 from space_remover import SpaceRemover
+from special_characters_remover import SpecialCharactersRemover
 from pipeline import Pipeline
 
 def save_output_to_file(output, file_path='output.txt'):
@@ -23,9 +24,10 @@ pipeline.add(StringReader())
 pipeline.add(CharacterCapitalizer())
 pipeline.add(DNABaseConverter())
 pipeline.add(SpaceRemover())
+pipeline.add(SpecialCharactersRemover())
 
 # Input string
-input_string = "I need a job"
+input_string = "I really need a job, please!"
 
 # Execute the pipeline
 output = pipeline.execute(input_string)
@@ -34,9 +36,8 @@ output = pipeline.execute(input_string)
 print(output)
 
 # Optional: Save output to a file
-save_to_file = False  # Set this to False if you don't want to save to a file
+save_to_file = True # Set this to False if you don't want to save to a file
 
 if save_to_file:
-    # Optionally, you can ask for a file path here or determine it based on other logic
     file_path = "output.txt"  
     save_output_to_file(output, file_path)
