@@ -1,4 +1,5 @@
 import re
+#re — Regular expression operations
 
 class SpecialCharactersRemover:
     def process(self, text):
