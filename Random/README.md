@@ -6,8 +6,7 @@ There's a bunch of janky code in here. Many projects are still half-finished.
 
 ### Conda Environment Setup
 
-I prefer using Conda for managing dependencies—it keeps things neat and tidy. If you haven't got Conda, the [official Conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is a great place to start.
-
+I used Conda for environment setup.
 Create and activate a new Conda environment named `IA` with:
 
 ```
