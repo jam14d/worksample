@@ -39,5 +39,5 @@ print(output)
 save_to_file = True # Set this to False if you don't want to save to a file
 
 if save_to_file:
-    file_path = "output.txt"  
+    file_path = "DNA_output.txt"  
     save_output_to_file(output, file_path)
