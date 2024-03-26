@@ -27,7 +27,7 @@ pipeline.add(SpaceRemover())
 pipeline.add(SpecialCharactersRemover())
 
 # Input string
-input_string = "I really need a job, please!"
+input_string = "I really need a job, please! I am living off unemployment!"
 
 # Execute the pipeline
 output = pipeline.execute(input_string)
