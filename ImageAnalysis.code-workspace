@@ -1,9 +1,15 @@
 {
 	"folders": [
 		{
+			"name": "ImageAnalysis",
 			"path": "."
 		},
 		{
+			"name": "RNA_Pipeline",
+			"path": "RNA_Pipeline"
+		},
+		{
+			"name": "jamieannemortel",
 			"path": ".."
 		}
 	],
