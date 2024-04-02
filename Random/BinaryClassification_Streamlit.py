@@ -24,6 +24,7 @@ def main():
     st.markdown("Are your mushrooms edible or poisonous? 🍄")
     st.sidebar.markdown("Are your mushrooms edible or poisonous? 🍄")
 
+    #load data function and st decorator
     @st.cache_data(persist=True)
     #persist argument, when set flag to True --> cache stored on disk volume, then uses cache output anytime app is rerun. 
     #good for computationally expensive tasks & changing hyperparameters 
@@ -33,7 +34,29 @@ def main():
         for col in data.columns:
             data[col] = label.fit_transform(data[col])
         return data
+    #splt function and st decorator
+    @st.cache_data(persist=True)
+    #use trusty ol pandas 
+    #create target vector y use "type" (indexed via dataframe)
+    #use pandas drop method, drop column "type"
+    
+    #data is set up like: 
+    #1st row: type: cap_shape, cap_surface, etc.
+    #2nd row: p: x, s, etc.
+    #3rd row: e: x, s, etc. 
+
+    #use sklearn to create xtrain,xtest, ytrain,ytest
+    #optionally specific test size 
+    #set random state argument to ensure reproducibility in splits
+    def split(df):
+            y = df.type
+            x = df.drop(columns=['type'])
+            x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state =0)
+            return x_train, x_test, y_train, y_test
+
+    #call split function on df (load ya split data)
     df = load_data()
+    x_train, x_test, y_train, y_test = split(df)
 
     if st.sidebar.checkbox("Show raw data", False):
         st. subheader("Mushroom Data Set Classification")

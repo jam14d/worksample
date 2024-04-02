@@ -1,13 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "ImageAnalysis",
-			"path": "."
-		},
-		{
-			"name": "jamieannemortel",
-			"path": ".."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
