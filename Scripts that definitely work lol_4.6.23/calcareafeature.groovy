@@ -1,2 +1,0 @@
-selectDetections();
-addShapeMeasurements("AREA")

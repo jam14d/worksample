@@ -1,2 +1,0 @@
-selectAnnotations();
-mergeSelectedAnnotations()
