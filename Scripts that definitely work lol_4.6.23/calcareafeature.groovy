@@ -1,0 +1,2 @@
+selectDetections();
+addShapeMeasurements("AREA")
