@@ -41,29 +41,37 @@ def run_pipeline(input_string, mutation_rate=0):
     pipeline.add(SpaceRemover())
     pipeline.add(SpecialCharactersRemover())
     
-    dna_output = pipeline.execute(input_string)
+    original_dna_output = pipeline.execute(input_string)
+    mutated_dna_output = original_dna_output
     
     if mutation_rate > 0:
-        dna_output = mutate_dna(dna_output, mutation_rate)
+        mutated_dna_output = mutate_dna(original_dna_output, mutation_rate)
     
-    return dna_output
+    return original_dna_output, mutated_dna_output
 
 # Streamlit interface
 st.title('DNA and RNA Transcription Simulator')
 user_input = st.text_area("Enter your text to convert into DNA:", "Type your text here...")
 mutation_rate = st.slider("Mutation rate (in percentage):", min_value=0.0, max_value=100.0, value=0.0, step=0.1) / 100
 
-if st.button('Transcribe DNA and RNA'):
+if st.button('Transcribe'):
     if user_input:
         # Generate and mutate DNA
-        dna_output = run_pipeline(user_input, mutation_rate)
-        st.text("Resulting DNA Sequence:")
-        st.write(dna_output)
+        original_dna, mutated_dna = run_pipeline(user_input, mutation_rate)
+        st.text("Original DNA Sequence (before mutation):")
+        st.write(original_dna)
+
+        st.text("Mutated DNA Sequence:")
+        st.write(mutated_dna)
 
         # Transcribe to RNA
-        rna_output = transcribe_dna_to_rna(dna_output)
+        rna_output = transcribe_dna_to_rna(mutated_dna)
         st.text("Resulting RNA Sequence:")
         highlighted_rna = highlight_stop_codons(rna_output)
         st.markdown(highlighted_rna, unsafe_allow_html=True)
     else:
         st.error("Please enter some text to process.")
+
+# Display the codon table image
+codon_table_image_url = "https://www.researchgate.net/profile/Anders-Esberg/publication/267702580/figure/fig2/AS:661826920513537@1534803242980/The-codon-table-The-genetic-code-is-composed-of-four-different-letters-U-C-A-and-G.png"  # Change this URL to the path where your image is hosted
+st.image(codon_table_image_url, caption="Codon Table", use_column_width=True)
