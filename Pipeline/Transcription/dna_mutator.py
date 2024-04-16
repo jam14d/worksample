@@ -23,6 +23,13 @@ def transcribe_dna_to_rna(dna_sequence):
     """Transcribes DNA sequence into RNA by replacing all instances of 'T' with 'U'."""
     return dna_sequence.replace('T', 'U')
 
+def highlight_stop_codons(rna_sequence):
+    """Highlights stop codons in the RNA sequence."""
+    stop_codons = ['UAA', 'UAG', 'UGA']
+    for codon in stop_codons:
+        rna_sequence = rna_sequence.replace(codon, f"<span style='color:red; font-weight:bold;'>{codon}</span>")
+    return rna_sequence
+
 def run_pipeline(input_string, mutation_rate=0):
     """
     Runs the transformation pipeline on an input string and applies mutations if specified.
@@ -56,7 +63,7 @@ if st.button('Transcribe DNA and RNA'):
         # Transcribe to RNA
         rna_output = transcribe_dna_to_rna(dna_output)
         st.text("Resulting RNA Sequence:")
-        st.write(rna_output)
+        highlighted_rna = highlight_stop_codons(rna_output)
+        st.markdown(highlighted_rna, unsafe_allow_html=True)
     else:
         st.error("Please enter some text to process.")
-
