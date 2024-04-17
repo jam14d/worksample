@@ -1,4 +1,6 @@
-# DNA and RNA Transcription Pipeline
+##Last edit: March 2024
+
+# DNA to RNA Pipeline
 
 This pipeline facilitates the conversion of any given text input into a simulated DNA sequence, and subsequently transcribes this DNA sequence into an RNA sequence. It consists of two main components: the DNA Generator and the RNA Transcriber. Outputs from both stages can optionally be saved as text files for further analysis or reference.
 
