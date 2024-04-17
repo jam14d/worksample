@@ -17,15 +17,15 @@ To run the app, you need to have Python and Streamlit installed. Follow these st
    ```bash
    git clone https://github.com/jam14d/Projects/CodetoCodons.git
    
-Navigate to the directory where dnatoprotein.py is located
+2. **Navigate to the directory where dnatoprotein.py is located**
    ```bash
    cd CodetoCodons
 
-2. **Install dependencies**
+3. **Install dependencies**
     ```bash 
     pip install streamlit
 
-3. **Run the application** 
+4. **Run the application** 
     ```bash 
     streamlit run dnatoprotein.py
 
