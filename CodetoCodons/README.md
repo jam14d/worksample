@@ -23,7 +23,7 @@ To run the app, you need to have Python and Streamlit installed. Follow these st
 
 3. **Run the application** 
     ```bash 
-    streamlit run app.py
+    streamlit run dnatoprotein.py
 
 ## Usage
 Upon launching the application, you will see a text area where you can input your text. After inputting the text, use the slider to set the mutation rate and press the "Transcribe and Translate" button to see the results:
