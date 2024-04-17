@@ -1,4 +1,4 @@
-# Code to Codons: Developing a Python Web App for DNA Mutation and Protein Synthesis
+# Code to Codons: Developing a Web App for DNA Mutation and Protein Synthesis
 
 ## Overview
 This is a web application designed to simulate the process of DNA mutation, transcription, and translation into proteins. This tool allows users to input a text, which is then converted into a DNA sequence, potentially mutated, transcribed into RNA, and finally translated into a protein sequence.
