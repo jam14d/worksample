@@ -1,6 +1,6 @@
 # Projects Repository
 
-## DNA to Protein Simulator
+## Code to Codons
 
 ### Overview
 A Streamlit web application that simulates the conversion of text to DNA, applies mutations, and translates the DNA through RNA into protein sequences.
