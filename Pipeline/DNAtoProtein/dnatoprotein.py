@@ -83,7 +83,7 @@ st.title('DNA to Protein Simulator')
 user_input = st.text_area("Enter your text to convert into DNA:", "Type your text here...")
 mutation_rate = st.slider("Mutation rate (in percentage):", min_value=0.0, max_value=100.0, value=0.0, step=0.1) / 100
 
-if st.button('Transcribe'):
+if st.button('Transcribe and Translate'):
     if user_input:
         # Generate and mutate DNA
         original_dna, mutated_dna = run_pipeline(user_input, mutation_rate)
