@@ -7,6 +7,8 @@ from character_capitalizer import CharacterCapitalizer
 from dna_base_converter import DNABaseConverter
 from space_remover import SpaceRemover
 from special_characters_remover import SpecialCharactersRemover
+from amino_acid_data import amino_acid_properties
+
 
 def mutate_dna(dna_sequence, mutation_rate):
     """Mutates the given DNA sequence based on the mutation rate."""
@@ -58,6 +60,7 @@ def translate_rna_to_protein(rna_sequence):
         elif codon in codon_to_amino_acid and codon_to_amino_acid[codon] == 'Stop':
             break
     return ' '.join(protein)
+
 
 def run_pipeline(input_string, mutation_rate=0):
     """
