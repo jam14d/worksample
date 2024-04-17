@@ -17,7 +17,7 @@ To run the app, you need to have Python and Streamlit installed. Follow these st
    ```bash
    git clone https://github.com/jam14d/Projects/CodetoCodons.git
    
-   Navigate to the directory where dnatoprotein.py is located
+Navigate to the directory where dnatoprotein.py is located
    ```bash
    cd CodetoCodons
 
