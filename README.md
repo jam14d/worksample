@@ -1,21 +1,31 @@
-## DNA and RNA Transcription Pipeline
+# Projects Repository
 
-### Description
+## DNA to Protein Simulator
 
-The DNA and RNA Transcription Pipeline is designed to convert any given text input into a simulated DNA sequence, which is then transcribed into an RNA sequence. This two-step process involves:
+### Overview
+A Streamlit web application that simulates the conversion of text to DNA, applies mutations, and translates the DNA through RNA into protein sequences.
 
-- **DNA Generation**: Converting a string to a DNA sequence.
-- **RNA Transcription**: Transcribing the DNA sequence into RNA.
+### Features
+- Convert text to DNA sequence.
+- Mutate DNA and transcribe into RNA.
+- Translate RNA to protein and highlight stop codons.
 
-### Components
+### Installation
+1. Clone the repo and navigate into the specific project directory.
+2. Install Streamlit using `pip install streamlit`.
+3. Run the app with `streamlit run app.py`.
 
-- `dna_generator.py`: Converts a string into a simulated DNA sequence. This script encapsulates the conversion logic, offering a standalone solution for DNA sequence generation from text inputs.
+### Usage
+Input text to convert and mutate into DNA, view the RNA transcription, and the resulting protein sequence with highlighted stop codons.
 
-- `rna_transcriber.py`: Transcribes the generated DNA sequence into RNA by replacing all instances of "T" with "U", mimicking biological transcription processes.
+### Modules
+Includes modules for DNA conversion, mutation, RNA transcription, and protein translation.
 
-### Output and Usage
+### Contributing
+Contributions are welcome, please submit pull requests for review.
 
-Both the DNA generation and RNA transcription stages allow for the optional saving of outputs as text files. To use this pipeline, ensure `dna_generator.py` and `rna_transcriber.py` are located in the same directory. You can generate a DNA sequence from your input string with `dna_generator.py`, and transcribe a sequence into RNA with `rna_transcriber.py`.
+### License
+Projects are licensed under the MIT License.
 
 ## Random Folder
 
