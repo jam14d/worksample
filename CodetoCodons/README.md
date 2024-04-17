@@ -32,9 +32,9 @@ Upon launching the application, you will see a text area where you can input you
 - **Protein Sequence:** Displays the sequence of amino acids that form the protein.
 
 ## Modules
-pipeline.py: Handles the processing pipeline for converting text to DNA and applying genetic operations.
-string_reader.py: Reads the input string and prepares it for further processing.
-character_capitalizer.py: Converts characters in the string to uppercase.
-dna_base_converter.py: Converts the string into a DNA sequence based on a predefined mapping.
-space_remover.py: Removes spaces from the string to ensure continuous DNA sequence.
-special_characters_remover.py: Removes special characters to maintain valid DNA bases.
+- pipeline.py: Handles the processing pipeline for converting text to DNA and applying genetic operations.
+- string_reader.py: Reads the input string and prepares it for further processing.
+- character_capitalizer.py: Converts characters in the string to uppercase.
+- dna_base_converter.py: Converts the string into a DNA sequence based on a predefined mapping.
+- space_remover.py: Removes spaces from the string to ensure continuous DNA sequence.
+- special_characters_remover.py: Removes special characters to maintain valid DNA bases.
