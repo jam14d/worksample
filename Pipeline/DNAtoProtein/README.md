@@ -1,4 +1,4 @@
-##Last edit: March 2024
+Last edit: March 2024
 
 # DNA to RNA Pipeline
 
