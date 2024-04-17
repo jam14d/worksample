@@ -22,6 +22,7 @@ To run the app, you need to have Python and Streamlit installed. Follow these st
     pip install streamlit
 
 3. **Run the application** 
+    ```bash 
     streamlit run app.py
 
 ## Usage
