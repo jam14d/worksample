@@ -1,7 +1,7 @@
-# Code to Codons
+# Code to Codons: Developing a Python Web App for DNA Mutation and Protein Synthesis
 
 ## Overview
-The DNA to Protein Simulator is a Streamlit web application designed to simulate the process of DNA mutation, transcription, and translation into proteins. This tool allows users to input a text, which is then converted into a DNA sequence, potentially mutated, transcribed into RNA, and finally translated into a protein sequence.
+This is a web application designed to simulate the process of DNA mutation, transcription, and translation into proteins. This tool allows users to input a text, which is then converted into a DNA sequence, potentially mutated, transcribed into RNA, and finally translated into a protein sequence.
 
 ## Features
 - **Text to DNA Conversion:** Convert input text into a simulated DNA sequence.
@@ -11,12 +11,11 @@ The DNA to Protein Simulator is a Streamlit web application designed to simulate
 - **Codon Highlighting:** Stop codons in the RNA sequence are highlighted for easy identification.
 
 ## Installation
-To run the DNA to Protein Simulator, you need to have Python and Streamlit installed. Follow these steps:
+To run the app, you need to have Python and Streamlit installed. Follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/dna-to-protein-simulator.git
-   cd dna-to-protein-simulator
+   git clone https://github.com/jam14d/Projects/CodetoCodons.git
 
 2. **Install dependencies**
     ```bash 
