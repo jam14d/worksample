@@ -12,24 +12,19 @@ from protein_synthesis import translate_rna_to_protein
 def mutate_dna(dna_sequence, mutation_rate):
     """Mutates the given DNA sequence based on the mutation rate."""
     dna_list = list(dna_sequence)
+    mutations_occurred = False
     for i in range(len(dna_list)):
         if random.random() < mutation_rate:
             mutations = {'A': 'CGT', 'C': 'AGT', 'G': 'ACT', 'T': 'ACG'}
             base_to_mutate = dna_list[i]
             mutated_base = random.choice(mutations[base_to_mutate])
             dna_list[i] = mutated_base
-    return ''.join(dna_list)
+            mutations_occurred = True
+    return ''.join(dna_list), mutations_occurred
 
 def transcribe_dna_to_rna(dna_sequence):
     """Transcribes DNA sequence into RNA by replacing all instances of 'T' with 'U'."""
     return dna_sequence.replace('T', 'U')
-
-def highlight_stop_codons(rna_sequence):
-    """Highlights stop codons in the RNA sequence."""
-    stop_codons = ['UAA', 'UAG', 'UGA']
-    for codon in stop_codons:
-        rna_sequence = rna_sequence.replace(codon, f"<span style='color:red; font-weight:bold;'>{codon}</span>")
-    return rna_sequence
 
 def run_pipeline(input_string, mutation_rate=0, prepend_start_codon=False):
     """
@@ -47,20 +42,19 @@ def run_pipeline(input_string, mutation_rate=0, prepend_start_codon=False):
     if prepend_start_codon:
         original_dna_output = 'ATG' + original_dna_output
 
-    mutated_dna_output = mutate_dna(original_dna_output, mutation_rate)
-    
-    return original_dna_output, mutated_dna_output
+    mutated_dna_output, mutations_occurred = mutate_dna(original_dna_output, mutation_rate)
+    return original_dna_output, mutated_dna_output, mutations_occurred
 
 # Streamlit interface
 st.title('DNA to Protein Simulator')
 user_input = st.text_area("Enter your text to convert into DNA:", "Type your text here...")
 mutation_rate = st.slider("Mutation rate (in percentage):", min_value=0.0, max_value=100.0, value=0.0, step=0.1) / 100
-prepend_start_codon = st.checkbox("Prepend 'ATG' start codon to DNA sequence", value=False)
+prepend_start_codon = st.checkbox("Prepend 'ATG' to DNA sequence", value=False)
 
 if st.button('Transcribe and Translate'):
     if user_input:
         # Generate and mutate DNA
-        original_dna, mutated_dna = run_pipeline(user_input, mutation_rate, prepend_start_codon)
+        original_dna, mutated_dna, mutations_occurred = run_pipeline(user_input, mutation_rate, prepend_start_codon)
         st.text("Original DNA Sequence (before mutation):")
         st.write(original_dna)
 
@@ -70,13 +64,18 @@ if st.button('Transcribe and Translate'):
         # Transcribe to RNA
         rna_output = transcribe_dna_to_rna(mutated_dna)
         st.text("Resulting RNA Sequence:")
-        highlighted_rna = highlight_stop_codons(rna_output)
-        st.markdown(highlighted_rna, unsafe_allow_html=True)
+        st.write(rna_output)  # No highlighting here
 
-        # Translate RNA to protein
-        protein_sequence = translate_rna_to_protein(rna_output)
-        st.text("Translated Protein Sequence:")
-        st.write(protein_sequence)
+        # Check if 'ATG' is mutated if it was originally added
+        if prepend_start_codon and mutated_dna[:3] != 'ATG':
+            st.text("ATG start codon is mutated, translation aborted.")
+        else:
+            # Translate RNA to protein
+            protein_sequence, stop_codon_present = translate_rna_to_protein(rna_output)
+            if stop_codon_present:
+                st.text("Stop codon detected, translation stopped.")
+            st.text("Translated Protein Sequence:")
+            st.write(protein_sequence)
     else:
         st.error("Please enter some text to process.")
 

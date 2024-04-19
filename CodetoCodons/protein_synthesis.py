@@ -1,3 +1,11 @@
+'''
+Loop through RNA Sequence: The function iterates through the RNA sequence three nucleotides at a time to process each codon.
+
+Stop Codon Check: If a stop codon is found (i.e., the codon maps to 'Stop'), the function sets the stop_codon_present flag to True and breaks out of the loop.
+
+Return Value: The function now returns a tuple consisting of the translated protein sequence and a boolean flag indicating whether a stop codon was encountered.
+'''
+
 def translate_rna_to_protein(rna_sequence):
     """Translates RNA sequence into protein based on codon mapping."""
     codon_to_amino_acid = {
@@ -19,10 +27,16 @@ def translate_rna_to_protein(rna_sequence):
         'GGU': 'Gly', 'GGC': 'Gly', 'GGA': 'Gly', 'GGG': 'Gly'
     }
     protein = []
+    stop_codon_present = False
     for i in range(0, len(rna_sequence), 3):
         codon = rna_sequence[i:i+3]
-        if codon in codon_to_amino_acid and codon_to_amino_acid[codon] != 'Stop':
+        if codon in codon_to_amino_acid:
+            if codon_to_amino_acid[codon] == 'Stop':
+                stop_codon_present = True
+                break
             protein.append(codon_to_amino_acid[codon])
-        elif codon in codon_to_amino_acid and codon_to_amino_acid[codon] == 'Stop':
-            break
-    return ' '.join(protein)
+        else:
+            break  # Handle case where the length of RNA is not a multiple of 3 or unrecognized codon
+    return ' '.join(protein), stop_codon_present
+
+
