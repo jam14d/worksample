@@ -10,7 +10,7 @@ This is a web application designed to simulate the process of DNA mutation, tran
 - **Protein Translation:** Translate the RNA sequence into a chain of amino acids, forming a protein.
 
 ## Prerequisites
-Before you begin, ensure you have Python installed on your system. You can download Python from [python.org](https://www.python.org/downloads/). This project assumes you are using Python 3.x.
+Before you begin, ensure you have Python installed on your system. You can download Python from [python.org](https://www.python.org/downloads/). This project assumes you are using Python Python 3.11.7.
 
 ## Installation Steps
 To run the app, follow these steps:
