@@ -24,16 +24,12 @@ To run the app, follow these steps:
    cd CodetoCodons
 
 3. **Install Virtualenv:**
-    ```bash 
-    pip install virtualenv
-
-3. **Install Virtualenv:**
    ```bash 
-    virtualenv tensorflow_env
+    pip install virtualenv
 
 4. **Create the environment:**
     ```bash 
-    pip install virtualenv
+    virtualenv tensorflow_env
 
 5. **On macOS and Linux, activate it:**
     ```bash 
