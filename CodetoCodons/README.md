@@ -37,7 +37,7 @@ To run the app, follow these steps:
 
 6.  **Install packages**
     ```bash 
-    pip install tensorflow tensorflow-hub numpy Pillow requests streamlit
+    pip install  tensorflow tensorflow-hub numpy Pillow requests streamlit matplotlib seaborn plotly
 
 7. **Run the application** 
     ```bash 
