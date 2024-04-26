@@ -1,72 +1,56 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import ConfusionMatrixDisplay, RocCurveDisplay, precision_recall_curve
-from sklearn.metrics import precision_score, recall_score 
-
-
-
-#Building a Machine Learning Web App with Streamlit and Python - Coursera course.
-
-#Notes:
-#▪️ Change catagorical data type in csv to numerical for loading features for sklearn (can use sklearn label encoder)
-#▪️ Target column for prediction is "type" - this is a binary value column where p stands for poisonous and e stands for edible.
-#▪️ Load dataset with pandas and store as pd dataframe
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+from sklearn.preprocessing import LabelEncoder
 
 def main():
-    st.title("Binary Classification Web App")
-    st.sidebar.title("Binary Classification Web App")
-    st.markdown("Are your mushrooms edible or poisonous? 🍄")
-    st.sidebar.markdown("Are your mushrooms edible or poisonous? 🍄")
+    st.title('Binary Classification with Streamlit')
 
-    #load data function and st decorator
-    @st.cache_data(persist=True)
-    #persist argument, when set flag to True --> cache stored on disk volume, then uses cache output anytime app is rerun. 
-    #good for computationally expensive tasks & changing hyperparameters 
-    def load_data():
-        data = pd.read_csv('/Users/jamieannemortel/Downloads/mushrooms.csv')
-        label = LabelEncoder()
-        for col in data.columns:
-            data[col] = label.fit_transform(data[col])
-        return data
-    #splt function and st decorator
-    @st.cache_data(persist=True)
-    #use trusty ol pandas 
-    #create target vector y use "type" (indexed via dataframe)
-    #use pandas drop method, drop column "type"
-    
-    #data is set up like: 
-    #1st row: type: cap_shape, cap_surface, etc.
-    #2nd row: p: x, s, etc.
-    #3rd row: e: x, s, etc. 
+    # File uploader allows user to add their own CSV
+    uploaded_file = st.file_uploader("Upload your CSV data", type=["csv"])
+    if uploaded_file is not None:
+        data = pd.read_csv(uploaded_file)
+        st.write(data.head())
 
-    #use sklearn to create xtrain,xtest, ytrain,ytest
-    #optionally specific test size 
-    #set random state argument to ensure reproducibility in splits
-    def split(df):
-            y = df.type
-            x = df.drop(columns=['type'])
-            x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state =0)
-            return x_train, x_test, y_train, y_test
-    #plot user selected evaluation metrics onto web app
-    def plot_metrics
+        # Preprocess the data
+        if st.button("Preprocess"):
+            # Convert categorical labels to numerical
+            le = LabelEncoder()
+            data['variety'] = le.fit_transform(data['variety'])
+            st.write('Label Encoding Applied:', data.head())
 
-    #call split function on df (load ya split data)
-    df = load_data()
-    x_train, x_test, y_train, y_test = split(df)
+            # Splitting the data into training and testing sets
+            X = data.drop(columns=['variety'])
+            y = data['variety']
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    if st.sidebar.checkbox("Show raw data", False):
-        st. subheader("Mushroom Data Set Classification")
+            # Train a logistic regression model
+            model = LogisticRegression(solver='liblinear')
+            model.fit(X_train, y_train)
 
+            # Prediction and performance evaluation
+            predictions = model.predict(X_test)
+            report = classification_report(y_test, predictions, target_names=le.classes_)
 
+            st.text("Classification Report:")
+            st.text(report)
 
+            # Making a prediction
+            st.subheader("Make a new prediction")
+            # Create sliders for input features
+            def user_input_features():
+                sepal_length = st.slider('Sepal length', float(data['sepal.length'].min()), float(data['sepal.length'].max()), float(data['sepal.length'].mean()))
+                sepal_width = st.slider('Sepal width', float(data['sepal.width'].min()), float(data['sepal.width'].max()), float(data['sepal.width'].mean()))
+                petal_length = st.slider('Petal length', float(data['petal.length'].min()), float(data['petal.length'].max()), float(data['petal.length'].mean()))
+                petal_width = st.slider('Petal width', float(data['petal.width'].min()), float(data['petal.width'].max()), float(data['petal.width'].mean()))
+                return pd.DataFrame([[sepal_length, sepal_width, petal_length, petal_width]], columns=['sepal.length', 'sepal.width', 'petal.length', 'petal.width'])
 
+            df_user = user_input_features()
+            if st.button('Predict'):
+                prediction = model.predict(df_user)
+                st.write('Predicted class:', le.inverse_transform(prediction)[0])
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
