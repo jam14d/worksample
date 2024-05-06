@@ -63,12 +63,16 @@ if st.button('Transcribe and Translate'):
 
         # Transcribe to RNA
         rna_output = transcribe_dna_to_rna(mutated_dna)
-        st.text("Resulting RNA Sequence:")
-        st.write(rna_output)  # No highlighting here
+        st.text("Resulting mRNA Sequence:")
+        st.write(rna_output)
 
-        # Check if 'ATG' is mutated if it was originally added
-        if prepend_start_codon and mutated_dna[:3] != 'ATG':
-            st.text("ATG mutated, no AUG, translation aborted.")
+
+        # Check for 'ATG' at the start of the original DNA after mutation
+        if not original_dna.startswith('ATG'):
+            st.warning("Original DNA does not start with 'ATG'. Translation aborted.")
+        # Ensure translation occurs only if 'ATG' is unmutated at the start of mutated DNA
+        elif mutated_dna[:3] != 'ATG':
+            st.warning("ATG start codon is mutated. Translation aborted.")
         else:
             # Translate RNA to protein
             protein_sequence, stop_codon_present = translate_rna_to_protein(rna_output)
@@ -78,7 +82,3 @@ if st.button('Transcribe and Translate'):
             st.write(protein_sequence)
     else:
         st.error("Please enter some text to process.")
-
-# Display the codon table image
-#codon_table_image_url = "https://www.researchgate.net/profile/Anders-Esberg/publication/267702580/figure/fig2/AS:661826920513537@1534803242980/The-codon-table-The-genetic-code-is-composed-of-four-different-letters-U-C-A-and-G.png"
-#st.image(codon_table_image_url, caption="Codon Table", use_column_width=True)

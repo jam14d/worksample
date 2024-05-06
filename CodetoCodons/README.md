@@ -8,10 +8,12 @@ This is a web application designed to simulate the process of DNA mutation, tran
 - **DNA Mutation:** Apply a mutation rate to the DNA sequence to simulate natural genetic variation.
 - **RNA Transcription:** Transcribe the mutated DNA sequence into RNA.
 - **Protein Translation:** Translate the RNA sequence into a chain of amino acids, forming a protein.
-- **Codon Highlighting:** Stop codons in the RNA sequence are highlighted for easy identification.
 
-## Installation
-To run the app, you need to have Python and Streamlit installed. Follow these steps:
+## Prerequisites
+Before you begin, ensure you have Python installed on your system. You can download Python from [python.org](https://www.python.org/downloads/). This project assumes you are using Python Python 3.11.7.
+
+## Installation Steps
+To run the app, follow these steps:
 
 1. **Clone the repository:**
    ```bash
@@ -21,11 +23,23 @@ To run the app, you need to have Python and Streamlit installed. Follow these st
    ```bash
    cd CodetoCodons
 
-3. **Install dependencies**
-    ```bash 
-    pip install streamlit
+3. **Install Virtualenv:**
+   ```bash 
+    pip install virtualenv
 
-4. **Run the application** 
+4. **Create the environment:**
+    ```bash 
+    virtualenv tensorflow_env
+
+5. **On macOS and Linux, activate it:**
+    ```bash 
+    source tensorflow_env/bin/activate
+
+6.  **Install packages**
+    ```bash 
+    pip install  tensorflow tensorflow-hub numpy Pillow requests streamlit matplotlib seaborn plotly scikit-learn
+
+7. **Run the application** 
     ```bash 
     streamlit run dnatoprotein.py
 

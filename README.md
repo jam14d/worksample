@@ -10,9 +10,12 @@ A Streamlit web application that simulates the conversion of text to DNA, applie
 - Mutate DNA and transcribe into RNA.
 - Translate RNA to protein and highlight stop codons.
 
+## Prerequisites
+Before you begin, ensure you have Python installed on your system. You can download Python from [python.org](https://www.python.org/downloads/). This project assumes you are using Python Python 3.11.7.
+
 ### Installation
 1. Clone the repo and navigate into the specific project directory.
-2. Install Streamlit using `pip install streamlit`.
+2. Create a virtual environment and install dependencies.
 3. Run the app with `streamlit run app.py`.
 
 ### Usage
