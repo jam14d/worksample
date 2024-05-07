@@ -1,5 +1,39 @@
 # Projects Repository
 
+## Image Analysis
+
+### Overview
+These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation. The aim is to calculate features of the segmented nuclei, performs classification based on these features, train a Random Forest classifier, and saves the model and extracted data. It also includes an optional visualization step for the segmented nuclei. As these projects are ongoing, additional functionalities and improvements may be integrated over time.
+
+
+## Prerequisites
+Ensure Python 3 is installed on your system. Python can be downloaded from the official Python website.
+
+### Installation
+Create and activate a virtual environment:
+```
+python3 -m venv IA
+```
+```
+source IA/bin/activate  # On macOS or Linux
+```
+```
+IA\Scripts\activate     # On Windows
+```
+
+Install dependencies:
+```
+pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib
+```
+
+### Usage
+1. Segment nuclei using the StarDist model.
+2. Calculate area, eccentricity, and mean intensity of each nucleus.
+3. Train a Random Forest classifier based on the features extracted.
+4. Save the model and data for further use.
+5. Optionally visualize segmented nuclei.
+
+
 ## Code to Codons
 
 ### Overview
