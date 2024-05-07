@@ -18,4 +18,4 @@ To isolate the dependencies required by this script, it's recommended to use a P
 ```pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib```
 
 
-For openslide troubleshooting tips, check out my blog: https://medium.com/@jamieannemortel/how-to-fix-openslide-library-not-found-error-by-updating-zshrc-on-macos-32538f857147
+For openslide troubleshooting tips, check out my blog: https://rb.gy/q1qnzc
