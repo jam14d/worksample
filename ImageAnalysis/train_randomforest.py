@@ -9,6 +9,7 @@ import joblib
 import matplotlib.pyplot as plt
 
 ##IN PROGRESS 
+
 # Define paths
 slide_path = "/Users/jamieannemortel/Downloads/OS-2.ndpi"
 classifier_save_path = "random_forest_classifier.pkl"
