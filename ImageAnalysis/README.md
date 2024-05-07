@@ -1,6 +1,6 @@
 # Overview
 
-These projects are actively being developed process whole slide images (WSI) using the StarDist model for nuclei segmentation. It calculates features of the segmented nuclei, performs binary classification based on these features, trains a Random Forest classifier, and saves the model and extracted data. The script also includes an optional visualization step for the segmented nuclei.
+These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation. The aim is to calculate features of the segmented nuclei, performs classification based on these features, train a Random Forest classifier, and saves the model and extracted data. It also includes an optional visualization step for the segmented nuclei. As these projects are ongoing, additional functionalities and improvements may be integrated over time.
 
 ## Prerequisites
 Ensure that Python 3 is installed on your system. You can download Python from the official website.
