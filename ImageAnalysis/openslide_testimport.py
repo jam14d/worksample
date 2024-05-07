@@ -1,3 +1,8 @@
+import sys
+print("Python EXE:", sys.executable)
+print("Python version:", sys.version)
+import site
+print("Site-packages location:", site.getsitepackages())
 import openslide
 
 try:
