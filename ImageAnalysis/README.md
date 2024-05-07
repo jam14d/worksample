@@ -8,10 +8,10 @@ Ensure that Python 3 is installed on your system. You can download Python from t
 To isolate the dependencies required by this script, it's recommended to use a Python virtual environment. Below are the steps to set up and activate a virtual environment:
 
 **Create the Virtual Environment:**
-    python3 -m venv IA
+```python3 -m venv IA```
 
 **Activate the Virtual Environment:**
-    source IA/bin/activate
+ ```source IA/bin/activate```
 
 **Installation of Dependencies:**
-    pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib
+```pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib```
