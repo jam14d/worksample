@@ -10,16 +10,7 @@ These projects are actively being developed to process whole slide images (WSI) 
 Ensure Python 3 is installed on your system. Python can be downloaded from the official Python website.
 
 ### Installation
-Create and activate a virtual environment:
-```
-python3 -m venv IA
-```
-```
-source IA/bin/activate  # On macOS or Linux
-```
-```
-IA\Scripts\activate     # On Windows
-```
+Create and activate a virtual environment.
 
 Install dependencies:
 ```
