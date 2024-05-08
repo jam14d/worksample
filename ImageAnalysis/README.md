@@ -15,7 +15,7 @@ To isolate the dependencies required by this script, it's recommended to use a P
  ```source IA/bin/activate```
 
 **Installation of Dependencies:**
-```pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib```
-
+```pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib keras```
+```pip install git+https://github.com/matterport/Mask_RCNN.git```
 
 For openslide troubleshooting tips, check out my blog: https://rb.gy/q1qnzc
