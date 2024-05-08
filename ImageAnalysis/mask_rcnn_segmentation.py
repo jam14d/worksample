@@ -5,12 +5,20 @@ from skimage import measure
 import matplotlib.pyplot as plt
 from openslide import OpenSlide
 
-# Mask R-CNN library imports
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers as KL
+from tensorflow.keras import models as KM
+
+# Ensure you are using an updated or compatible version of mrcnn that works with tf.keras
 from mrcnn.config import Config
 from mrcnn import model as modellib
 from mrcnn import visualize
 from mrcnn.model import load_image_gt
 from mrcnn.model import mold_image
+
+
+#optimizing on local is a pain -- work on colab for now?
 
 # Configuration for inference
 class InferenceConfig(Config):
@@ -27,7 +35,7 @@ config.display()
 # Create a Mask R-CNN model in inference mode
 model = modellib.MaskRCNN(mode="inference", config=config, model_dir=os.getcwd())
 
-# Load pre-trained weights
+# Load pre-trained weights, ensure they are the correct format for tf.keras
 model.load_weights('path_to_coco_weights.h5', by_name=True)
 
 # Load your image
@@ -43,7 +51,4 @@ r = results[0]
 visualize.display_instances(tile, r['rois'], r['masks'], r['class_ids'], 
                             ['BG', 'nucleus'], r['scores'])
 
-# Process mask and extract features
-# Assuming you want to process the masks further to extract features
-for i in range(r['masks'].shape[2]):
-    mask = r['masks'][:, :, i]
+# Additional processing can be added here to handle the masks or extract further features
