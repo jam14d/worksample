@@ -1,6 +1,6 @@
 # Overview
 
-These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation. The aim is to calculate features of the segmented nuclei, performs classification based on these features, train a Random Forest classifier, and saves the model and extracted data. It also includes an optional visualization step for the segmented nuclei. As these projects are ongoing, additional functionalities and improvements may be integrated over time.
+These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation. The aim is to calculate features of the segmented nuclei, perform classification based on these features, train a Random Forest classifier, and save the model and extracted data. It also includes an optional visualization step for the segmented nuclei. Additionally, one of the projects focuses on binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). As these projects are ongoing, additional functionalities and improvements may be integrated over time.
 
 ## Prerequisites
 Ensure that Python 3 is installed on your system. You can download Python from the official website.
@@ -28,6 +28,7 @@ The ```breastcancerclassification.py``` performs binary classification of breast
 
 The dataset directory should have the following structure:
 
+``` 
 dataset_dir/
     ├── benign/
     │   ├── image1.jpg
@@ -37,7 +38,7 @@ dataset_dir/
         ├── image1.jpg
         ├── image2.jpg
         └── ...
-
+``` 
 
 ## How It Works
 
