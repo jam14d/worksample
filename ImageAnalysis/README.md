@@ -1,27 +1,25 @@
 # Overview
 
+# Overview
 These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation and to classify breast cancer histopathological images. The primary focus is on binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). As these projects are ongoing, additional functionalities and improvements may be integrated over time.
 
 
 ## Prerequisites
-Ensure that Python 3 is installed on your system. You can download Python from the official website.
+Ensure Python 3 is installed on your system. Python can be downloaded from the official Python website.
 
-## Setting up the Virtual Environment
-To isolate the dependencies required by this script, it's recommended to use a Python virtual environment. Below are the steps to set up and activate a virtual environment:
+### Installation
+Create and activate a virtual environment.
 
-**Create the Virtual Environment:**
-```python3 -m venv IA```
+Install dependencies:
+```
+pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib
+```
 
-**Activate the Virtual Environment:**
- ```source IA/bin/activate```
+### Usage for Stardist 
+1. Segment nuclei using the StarDist model.
+2. Optionally visualize segmented nuclei.
 
-**Installation of Dependencies:**
-```pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib keras```
-
-For openslide troubleshooting tips, check out my blog: https://rb.gy/q1qnzc
-
-
-# Breast Cancer Histopathological Image Classification
+# Breast Cancer Histopathological Image Classification Overview
 
 The ```breastcancerclassification.py``` performs binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). Before running the script, please ensure that you have the dataset prepared in the following format:
 

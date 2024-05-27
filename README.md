@@ -21,7 +21,7 @@ pip install numpy pandas scikit-image scikit-learn stardist openslide-python job
 1. Segment nuclei using the StarDist model.
 2. Optionally visualize segmented nuclei.
 
-### Breast Cancer Histopathological Image Classification
+### Breast Cancer Histopathological Image Classification Overview
 The breastcancerclassification.py script performs binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). Before running the script, please ensure that you have the dataset prepared in the following format:
 
 ```dataset_dir/
@@ -36,7 +36,7 @@ The breastcancerclassification.py script performs binary classification of breas
 ```
 
 
-### Usage
+### Usage for Breast Cancer Histopathological Image Classification
 
 1. **Dataset Preparation**: Obtain a dataset of breast cancer histopathological images. Organize the dataset into subdirectories representing the different classes (benign and malignant).
 
