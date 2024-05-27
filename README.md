@@ -37,13 +37,13 @@ The breastcancerclassification.py script performs binary classification of breas
 
 
 ### How It Works
-1. Loading and Preprocessing Data: The script loads the dataset of breast cancer histopathological images using the ImageDataGenerator class from TensorFlow's Keras library for data loading and preprocessing, including rescaling pixel values and splitting the dataset into training and validation sets.
+1. **Loading and Preprocessing Data**: The script loads the dataset of breast cancer histopathological images. It uses the `ImageDataGenerator` class from TensorFlow's Keras library for data loading and preprocessing. This class performs tasks like rescaling the pixel values of the images and splitting the dataset into training and validation sets.
 
-2. Building the Model: The script defines a CNN model using the Sequential class from Keras. The architecture includes convolutional layers, max-pooling layers, and dense layers, effective for learning spatial hierarchies in images.
+2. **Building the Model**: The script defines a CNN model using the `Sequential` class from Keras. The model architecture consists of convolutional layers, max-pooling layers, and dense layers. This architecture is effective for learning spatial hierarchies of features in images.
 
-3. Compiling and Training the Model: The model is compiled using the Adam optimizer and binary cross-entropy loss function. It is trained on the training data using the fit() method, adjusting its parameters to minimize loss and improve performance.
+3. **Compiling and Training the Model**: The model is compiled using the Adam optimizer and binary cross-entropy loss function. It's then trained on the training data using the `fit()` method. During training, the model adjusts its parameters (weights and biases) to minimize the loss and improve its performance.
 
-4. Evaluating the Model: After training, the model's performance is evaluated on the validation set. The script calculates the probabilities of images being malignant using the predict() method and computes the ROC curve and AUC to measure performance.
+4. **Evaluating the Model**: After training, the model's performance is evaluated on the validation set. The script calculates the probabilities of the images belonging to the positive class (malignant) using the `predict()` method. It then computes the receiver operating characteristic (ROC) curve and calculates the area under the curve (AUC) as a measure of the model's performance.
 
 
 ## Code to Codons
