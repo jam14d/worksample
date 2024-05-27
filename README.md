@@ -3,7 +3,8 @@
 ## Image Analysis
 
 ### Overview
-These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation. The aim is to calculate features of the segmented nuclei, performs classification based on these features, train a Random Forest classifier, and saves the model and extracted data. It also includes an optional visualization step for the segmented nuclei. As these projects are ongoing, additional functionalities and improvements may be integrated over time.
+These projects are actively being developed to process whole slide images (WSI) using the StarDist model for nuclei segmentation and to classify breast cancer histopathological images. The primary focus is on binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). As these projects are ongoing, additional functionalities and improvements may be integrated over time.
+
 
 
 ## Prerequisites
@@ -17,13 +18,33 @@ Install dependencies:
 pip install numpy pandas scikit-image scikit-learn stardist openslide-python joblib matplotlib
 ```
 
-### Usage
+### Usage for Stardist 
 1. Segment nuclei using the StarDist model.
-2. Calculate area, eccentricity, and mean intensity of each nucleus.
-3. Train a Random Forest classifier based on the features extracted.
-4. Save the model and data for further use.
-5. Optionally visualize segmented nuclei.
+2. Optionally visualize segmented nuclei.
 
+### Breast Cancer Histopathological Image Classification
+The breastcancerclassification.py script performs binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). Before running the script, please ensure that you have the dataset prepared in the following format:
+
+```dataset_dir/
+├── benign/
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   └── ...
+└── malignant/
+    ├── image1.jpg
+    ├── image2.jpg
+    └── ...
+```
+
+
+### How It Works
+1. Loading and Preprocessing Data: The script loads the dataset of breast cancer histopathological images using the ImageDataGenerator class from TensorFlow's Keras library for data loading and preprocessing, including rescaling pixel values and splitting the dataset into training and validation sets.
+
+2. Building the Model: The script defines a CNN model using the Sequential class from Keras. The architecture includes convolutional layers, max-pooling layers, and dense layers, effective for learning spatial hierarchies in images.
+
+3. Compiling and Training the Model: The model is compiled using the Adam optimizer and binary cross-entropy loss function. It is trained on the training data using the fit() method, adjusting its parameters to minimize loss and improve performance.
+Evaluating the Model: After training, the model's performance is evaluated on the validation set. The script calculates the probabilities of images being malignant using the predict() method and computes the ROC curve and AUC to measure performance.
+Usage
 
 ## Code to Codons
 
