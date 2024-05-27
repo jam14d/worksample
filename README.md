@@ -36,7 +36,7 @@ The breastcancerclassification.py script performs binary classification of breas
 ```
 
 
-## Usage
+### Usage
 
 1. **Dataset Preparation**: Obtain a dataset of breast cancer histopathological images. Organize the dataset into subdirectories representing the different classes (benign and malignant).
 
