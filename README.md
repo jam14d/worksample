@@ -36,14 +36,14 @@ The breastcancerclassification.py script performs binary classification of breas
 ```
 
 
-### How It Works
-1. **Loading and Preprocessing Data**: The script loads the dataset of breast cancer histopathological images. It uses the `ImageDataGenerator` class from TensorFlow's Keras library for data loading and preprocessing. This class performs tasks like rescaling the pixel values of the images and splitting the dataset into training and validation sets.
+## Usage
 
-2. **Building the Model**: The script defines a CNN model using the `Sequential` class from Keras. The model architecture consists of convolutional layers, max-pooling layers, and dense layers. This architecture is effective for learning spatial hierarchies of features in images.
+1. **Dataset Preparation**: Obtain a dataset of breast cancer histopathological images. Organize the dataset into subdirectories representing the different classes (benign and malignant).
 
-3. **Compiling and Training the Model**: The model is compiled using the Adam optimizer and binary cross-entropy loss function. It's then trained on the training data using the `fit()` method. During training, the model adjusts its parameters (weights and biases) to minimize the loss and improve its performance.
+2. **Running the Script**: Set the `dataset_dir` variable in the script to the path of the dataset directory. Run the script using Python. It will train the CNN model and evaluate its performance using ROC curves and AUC.
 
-4. **Evaluating the Model**: After training, the model's performance is evaluated on the validation set. The script calculates the probabilities of the images belonging to the positive class (malignant) using the `predict()` method. It then computes the receiver operating characteristic (ROC) curve and calculates the area under the curve (AUC) as a measure of the model's performance.
+3. **Interpreting Results**: After running the script, analyze the generated ROC curve and AUC score. These metrics provide insights into the model's ability to distinguish between benign and malignant tissue samples. A higher AUC score indicates better performance.
+
 
 
 ## Code to Codons
