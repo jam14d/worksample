@@ -1,7 +1,9 @@
 import numpy as np
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
-class Predictor:
+#encapsulates all functionalities related to image prediction
+
+class ImagePredictor:
     def __init__(self, model, img_width=50, img_height=50):
         self.model = model
         self.img_width = img_width
