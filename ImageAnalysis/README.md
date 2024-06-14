@@ -23,7 +23,6 @@ pip install numpy pandas scikit-image scikit-learn stardist openslide-python job
 The ```breastcancerclassification.py``` performs binary classification of breast cancer histopathological images into benign and malignant categories using convolutional neural networks (CNNs). Before running the script, please ensure that you have the dataset prepared in the following format:
 
 
-
 ## Dataset Structure
 
 The dataset directory should have the following structure:
