@@ -1,4 +1,6 @@
 import os
+import pandas as pd  # Import pandas
+import numpy as np  # Import numpy
 import matplotlib.pyplot as plt
 from tensorflow.keras.callbacks import ModelCheckpoint
 from sklearn.metrics import roc_curve, auc
