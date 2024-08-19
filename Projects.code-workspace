@@ -1,9 +1,11 @@
 {
     "folders": [
         {
+            "name": "Projects",
             "path": "."
         },
         {
+            "name": "SpatialData",
             "path": "CodetoCodons/SpatialData"
         }
     ]

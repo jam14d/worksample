@@ -1,17 +1,45 @@
 import streamlit as st
 import pandas as pd
 
-def calculate_antibody_dilution(stock_concentration, final_concentration, final_volume):
-    dilution_factor = stock_concentration / final_concentration
-    stock_volume = final_volume / dilution_factor
-    diluent_volume = final_volume - stock_volume
-    return stock_volume, diluent_volume, dilution_factor
+def convert_concentration(value, from_unit, to_unit):
+    if from_unit == to_unit:
+        return value
+    if from_unit == 'mg/mL' and to_unit == 'µg/mL':
+        return value * 1000
+    if from_unit == 'µg/mL' and to_unit == 'mg/mL':
+        return value / 1000
+    raise ValueError("Invalid units for concentration conversion")
 
-def calculate_stock_dilution(stock_concentration, final_concentration, final_volume):
-    dilution_factor = stock_concentration / final_concentration
-    stock_volume = final_volume / dilution_factor
-    diluent_volume = final_volume - stock_volume
-    return stock_volume, diluent_volume, dilution_factor
+def convert_volume(value, from_unit, to_unit):
+    if from_unit == to_unit:
+        return value
+    if from_unit == 'mL' and to_unit == 'µL':
+        return value * 1000
+    if from_unit == 'µL' and to_unit == 'mL':
+        return value / 1000
+    raise ValueError("Invalid units for volume conversion")
+
+def choose_pipette(volume):
+    if volume >= 1000:
+        return '1000 µL pipette'
+    elif volume >= 200:
+        return '200 µL pipette'
+    elif volume >= 20:
+        return '20 µL pipette'
+    else:
+        return '10 µL pipette'
+
+def calculate_antibody_dilution(stock_concentration, ratio, final_volume, concentration_unit, volume_unit):
+    # Convert concentrations to µg/mL and volumes to mL
+    stock_concentration = convert_concentration(stock_concentration, concentration_unit, 'µg/mL')
+    final_concentration = convert_concentration(stock_concentration / ratio, 'µg/mL', concentration_unit)
+    final_volume_mL = convert_volume(final_volume, volume_unit, 'mL')
+    
+    dilution_factor = ratio
+    stock_volume_mL = final_volume_mL / dilution_factor
+    diluent_volume_mL = final_volume_mL - stock_volume_mL
+
+    return convert_volume(stock_volume_mL, 'mL', volume_unit), convert_volume(diluent_volume_mL, 'mL', volume_unit), final_concentration, dilution_factor
 
 def concentration_conversion_table():
     data = {
@@ -40,10 +68,7 @@ def main():
     st.title('Dilution Wizard')
 
     st.write("""
-    This tool helps you with two types of dilutions:
-    1. Preparing a working solution from a stock antibody solution.
-    2. Diluting stock solutions (e.g., making 0.5x from 10x).
-
+    This tool helps you with antibody dilutions and stock solution dilutions.
     Use the calculators below to perform these dilutions and understand the conversion references for concentrations and volumes.
     """)
 
@@ -64,48 +89,56 @@ def main():
         st.subheader('1. Antibody Dilution Calculator')
         st.write("""
         Use this section to prepare a working solution of an antibody for immunofluorescence staining.
-        Example Scenario: You need to prepare 10 mL of a working solution from a stock solution of 1 mg/mL to a final concentration of 1 µg/mL.
+        You can calculate the dilution based on specific ratios and switch between concentration and volume units.
         """)
         
-        stock_concentration_ab = st.number_input('Stock Antibody Concentration (mg/mL)', min_value=0.001, value=1.0, step=0.001, key='stock_concentration_ab')
-        final_concentration_ab = st.number_input('Final Antibody Concentration (µg/mL)', min_value=0.001, value=1.0, step=0.001, key='final_concentration_ab')
-        final_volume_ab = st.number_input('Final Volume (mL)', min_value=1, value=10, key='final_volume_ab')
+        # Input fields for antibody dilution
+        stock_concentration_ab = st.number_input('Stock Antibody Concentration', min_value=0.001, value=1.0, step=0.001, key='stock_concentration_ab')
+        concentration_unit_ab = st.selectbox('Concentration Unit', ['mg/mL', 'µg/mL'], key='concentration_unit_ab')
+        final_volume_ab = st.number_input('Final Volume', min_value=1, value=10, key='final_volume_ab')
+        volume_unit_ab = st.selectbox('Volume Unit', ['mL', 'µL'], key='volume_unit_ab')
+
+        ratio = st.selectbox(
+            'Choose a Dilution Ratio:',
+            options=['1:1000', '1:250', '1:500', '1:100']
+        )
+        ratio_value = int(ratio.split(':')[1])
 
         if st.button('Calculate Antibody Dilution', key='calculate_antibody_dilution'):
-            stock_volume_ab, diluent_volume_ab, dilution_factor_ab = calculate_antibody_dilution(
-                stock_concentration_ab, final_concentration_ab / 1000, final_volume_ab
+            stock_volume_ab, diluent_volume_ab, final_concentration_ab, dilution_factor_ab = calculate_antibody_dilution(
+                stock_concentration_ab, ratio_value, final_volume_ab, concentration_unit_ab, volume_unit_ab
             )
 
             # Steps and results are handled in col2
             with col2:
                 st.write(f"**Steps for Antibody Dilution:**")
                 
-                st.write(f"### 1. Calculate the Dilution Factor:")
+                st.write(f"### 1. Calculate the Final Concentration:")
                 st.markdown(f"""
                 **Formula:** 
-                Dilution Factor = 
+                Final Concentration = 
                 ```
-                {stock_concentration_ab} mg/mL
-                ---------------
-                {final_concentration_ab / 1000:.3f} mg/mL
+                {convert_concentration(stock_concentration_ab, concentration_unit_ab, 'µg/mL')} µg/mL
+                ----------------------------
+                {ratio_value}
                 ```
 
                 **Calculation:** 
-                Dilution Factor = {stock_concentration_ab} / ({final_concentration_ab / 1000:.3f}) = **{dilution_factor_ab:.2f}**
+                Final Concentration = {convert_concentration(stock_concentration_ab, concentration_unit_ab, 'µg/mL')} / {ratio_value} = **{final_concentration_ab:.3f} {concentration_unit_ab}**
                 """)
                 
-                st.write(f"### 2. Calculate the Volume of Stock Solution Needed:")
+                st.write(f"### 2. Calculate the Volume of Ab Stock Solution Needed:")
                 st.markdown(f"""
                 **Formula:** 
-                Volume of Stock Solution = 
+                Volume of Ab Stock Solution = 
                 ```
-                {final_volume_ab:.2f} mL
+                {convert_volume(final_volume_ab, volume_unit_ab, 'mL'):.2f} mL
                 ----------------------
-                {dilution_factor_ab:.2f}
+                {ratio_value}
                 ```
 
                 **Calculation:** 
-                Volume of Stock Solution = {final_volume_ab:.2f} mL / {dilution_factor_ab:.2f} = **{stock_volume_ab:.2f} mL**
+                Volume of Stock Solution = {convert_volume(final_volume_ab, volume_unit_ab, 'mL'):.2f} mL / {ratio_value} = **{stock_volume_ab:.2f} {volume_unit_ab}**
                 """)
                 
                 st.write(f"### 3. Calculate the Volume of Diluent Needed:")
@@ -113,19 +146,25 @@ def main():
                 **Formula:** 
                 Volume of Diluent = 
                 ```
-                {final_volume_ab:.2f} mL
+                {convert_volume(final_volume_ab, volume_unit_ab, 'mL'):.2f} mL
                 ----------------------
-                {stock_volume_ab:.2f} mL
+                {stock_volume_ab:.2f} {volume_unit_ab}
                 ```
 
                 **Calculation:** 
-                Volume of Diluent = {final_volume_ab:.2f} mL - {stock_volume_ab:.2f} mL = **{diluent_volume_ab:.2f} mL**
+                Volume of Diluent = {convert_volume(final_volume_ab, volume_unit_ab, 'mL'):.2f} mL - {stock_volume_ab:.2f} {volume_unit_ab} = **{diluent_volume_ab:.2f} {volume_unit_ab}**
                 """)
 
+                st.write(f"### 4. Recommended Pipette:")
+                pipette = choose_pipette(stock_volume_ab)
+                st.markdown(f"**Use a** {pipette} **for measuring the stock solution.**")
+
                 results_ab = {
-                    'Volume of Stock Solution Needed': f"{stock_volume_ab:.2f} mL",
-                    'Volume of Diluent Needed': f"{diluent_volume_ab:.2f} mL",
-                    'Dilution Factor': f"{dilution_factor_ab:.2f}"
+                    'Volume of Stock Solution Needed': f"{stock_volume_ab:.2f} {volume_unit_ab}",
+                    'Volume of Diluent Needed': f"{diluent_volume_ab:.2f} {volume_unit_ab}",
+                    'Final Concentration': f"{final_concentration_ab:.3f} {concentration_unit_ab}",
+                    'Dilution Ratio': ratio,
+                    'Recommended Pipette': pipette
                 }
                 
                 display_results(results_ab)
@@ -139,7 +178,8 @@ def main():
         
         stock_concentration_stock = st.number_input('Stock Solution Concentration (x)', min_value=0.01, value=10.0, step=0.01, key='stock_concentration_stock')
         final_concentration_stock = st.number_input('Final Solution Concentration (x)', min_value=0.01, value=0.5, step=0.01, key='final_concentration_stock')
-        final_volume_stock = st.number_input('Final Volume (mL)', min_value=1, value=10, key='final_volume_stock')
+        final_volume_stock = st.number_input('Final Volume', min_value=1, value=10, key='final_volume_stock')
+        volume_unit_stock = st.selectbox('Volume Unit', ['mL', 'µL'], key='volume_unit_stock')
 
         if st.button('Calculate Stock Solution Dilution', key='calculate_stock_dilution'):
             stock_volume_stock, diluent_volume_stock, dilution_factor_stock = calculate_stock_dilution(
@@ -169,13 +209,13 @@ def main():
                 **Formula:** 
                 Volume of Stock Solution = 
                 ```
-                {final_volume_stock:.2f} mL
-                -------------------------
-                {dilution_factor_stock:.2f}
+                {convert_volume(final_volume_stock, volume_unit_stock, 'mL'):.2f} mL
+                ----------------------
+                {dilution_factor_stock}
                 ```
 
                 **Calculation:** 
-                Volume of Stock Solution = {final_volume_stock:.2f} mL / {dilution_factor_stock:.2f} = **{stock_volume_stock:.2f} mL**
+                Volume of Stock Solution = {convert_volume(final_volume_stock, volume_unit_stock, 'mL'):.2f} mL / {dilution_factor_stock:.2f} = **{stock_volume_stock:.2f} {volume_unit_stock}**
                 """)
                 
                 st.write(f"### 3. Calculate the Volume of Diluent Needed:")
@@ -183,19 +223,24 @@ def main():
                 **Formula:** 
                 Volume of Diluent = 
                 ```
-                {final_volume_stock:.2f} mL
-                -------------------------
-                {stock_volume_stock:.2f} mL
+                {convert_volume(final_volume_stock, volume_unit_stock, 'mL'):.2f} mL
+                ----------------------
+                {stock_volume_stock:.2f} {volume_unit_stock}
                 ```
 
                 **Calculation:** 
-                Volume of Diluent = {final_volume_stock:.2f} mL - {stock_volume_stock:.2f} mL = **{diluent_volume_stock:.2f} mL**
+                Volume of Diluent = {convert_volume(final_volume_stock, volume_unit_stock, 'mL'):.2f} mL - {stock_volume_stock:.2f} {volume_unit_stock} = **{diluent_volume_stock:.2f} {volume_unit_stock}**
                 """)
 
+                st.write(f"### 4. Recommended Pipette:")
+                pipette = choose_pipette(stock_volume_stock)
+                st.markdown(f"**Use a** {pipette} **for measuring the stock solution.**")
+
                 results_stock = {
-                    'Volume of Stock Solution Needed': f"{stock_volume_stock:.2f} mL",
-                    'Volume of Diluent Needed': f"{diluent_volume_stock:.2f} mL",
-                    'Dilution Factor': f"{dilution_factor_stock:.2f}"
+                    'Volume of Stock Solution Needed': f"{stock_volume_stock:.2f} {volume_unit_stock}",
+                    'Volume of Diluent Needed': f"{diluent_volume_stock:.2f} {volume_unit_stock}",
+                    'Dilution Factor': f"{dilution_factor_stock:.2f}",
+                    'Recommended Pipette': pipette
                 }
                 
                 display_results(results_stock)
