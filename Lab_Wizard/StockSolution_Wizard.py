@@ -17,7 +17,7 @@ def create_download_link(text, filename):
 
 # Streamlit app
 def main():
-    st.title("Stock Solution Calculator")
+    st.title("Stock Solution Wizard")
 
     # Input compound name and molecular weight
     compound_name = st.selectbox('Select Compound:', list(compounds.keys()) + ['Other'])
