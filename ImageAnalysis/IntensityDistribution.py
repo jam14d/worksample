@@ -11,12 +11,19 @@ This is useful for biological imaging or any other field where quantifying signa
 '''
 
 # Path to data
-path_det = "/Users/jamieannemortel/Downloads/detectionobjects"
-path_ano = "/Users/jamieannemortel/Downloads/annotationobjects"
+path_det = "/Users/jamieannemortel/Downloads/Andrew/detections"
+path_ano = "/Users/jamieannemortel/Downloads/Andrew/annotations"
 os.chdir(path_det)
 
+#Naming stuff
+Pink_posName = "DRD1_Pos"
+Pink_posName_2 = "DRD1_Pos: A2A_Neg"
+Blue_posName = "A2A_Pos"
+Blue_posName_2 = "DRD1_Neg: A2A_Pos"
+#double_positive = "DRD1_Pos: A2A_Pos"
+
 # Directory creation for saving plots (optional)
-plots_dir = "/Users/jamieannemortel/Downloads/plots"
+plots_dir = "/Users/jamieannemortel/Downloads/Andrew/plots"
 os.makedirs(plots_dir, exist_ok=True)
 
 # Set the custom intensity value to ignore values below
@@ -49,16 +56,17 @@ for f in filelist:
     #os.chdir(path_det)
 
     # Basic calculations from the data, NotCells are all the things that are given the Class NotCell in the data etc, can be changed to be whatever
-    NotCell = Read_Data[Read_Data["Classification"] == "NotCell"]
-    Cell = Read_Data[Read_Data["Classification"] == "Cell"]
+   # NotCell = Read_Data[Read_Data["Classification"] == "NotCell"]
+    #Cell = Read_Data[Read_Data["Classification"] == "Cell"]
+    Cell = Read_Data[Read_Data['Name'].isin([Pink_posName, Pink_posName_2, Blue_posName, Blue_posName_2])]
 
     # Exclude values below the custom intensity threshold
-    Cell_filtered = Cell[Cell["DAB: Nucleus: Mean"] >= custom_intensity_threshold]
+    Cell_filtered = Cell[Cell["Cy5: Mean"] >= custom_intensity_threshold]
 
     # Check if there are any valid values after filtering
     if not Cell_filtered.empty:
         # Finding peaks in the histogram (background estimation)
-        hist_values, bin_edges, _ = plt.hist(Cell_filtered["DAB: Nucleus: Mean"], bins=50, range=(min(Cell_filtered["DAB: Nucleus: Mean"]), max(Cell_filtered["DAB: Nucleus: Mean"])), color='red', alpha=0.7)
+        hist_values, bin_edges, _ = plt.hist(Cell_filtered["Cy5: Mean"], bins=50, range=(min(Cell_filtered["Cy5: Mean"]), max(Cell_filtered["Cy5: Mean"])), color='red', alpha=0.7)
 
         # If there are at least two peaks, find the minimum between them
         peaks, _ = find_peaks(hist_values, height=0)
@@ -75,9 +83,9 @@ for f in filelist:
 
             # Plotting the histogram with the minimum value between peaks marked
             plt.figure(figsize=(10, 6))
-            plt.hist(Cell_filtered["DAB: Nucleus: Mean"], bins=50, range=(min(Cell_filtered["DAB: Nucleus: Mean"]), max(Cell_filtered["DAB: Nucleus: Mean"])), color='red', alpha=0.7)
+            plt.hist(Cell_filtered["Cy5: Mean"], bins=50, range=(min(Cell_filtered["Cy5: Mean"]), max(Cell_filtered["Cy5: Mean"])), color='red', alpha=0.7)
             plt.axvline(x=min_between_peaks, color='blue', linestyle='dashed', linewidth=2, label='Min Between Peaks')
-            plt.title("Histogram of Entire Unfiltered Intensity Dataset")
+            plt.title("Histogram of signal intensity in all cells expressing oprm1")
             plt.xlabel("Intensity")
             plt.ylabel("Frequency")
             plt.legend()
@@ -87,9 +95,9 @@ for f in filelist:
             print(f"Minimum value between peaks for {f}: {min_between_peaks}")
 
         # Normalization step using custom min and max values for each file
-        custom_min_value = np.min(Cell_filtered["DAB: Nucleus: Mean"])
-        custom_max_value = np.max(Cell_filtered["DAB: Nucleus: Mean"])
-        normalized_values = (Cell_filtered["DAB: Nucleus: Mean"] - custom_min_value) / (custom_max_value - custom_min_value)
+        custom_min_value = np.min(Cell_filtered["Cy5: Mean"])
+        custom_max_value = np.max(Cell_filtered["Cy5: Mean"])
+        normalized_values = (Cell_filtered["Cy5: Mean"] - custom_min_value) / (custom_max_value - custom_min_value)
 
         Quant_Intensity = normalized_values.quantile([0.25, 0.5, 0.75])
 
@@ -99,7 +107,7 @@ for f in filelist:
         median_intensity_list.append(custom_min_value + Quant_Intensity[0.5] * (custom_max_value - custom_min_value))
         upper_75th_percentile_list.append(custom_min_value + Quant_Intensity[0.75] * (custom_max_value - custom_min_value))
         custom_max_value_list.append(custom_max_value)
-        all_unfiltered_intensity.extend(Cell["DAB: Nucleus: Mean"].values)
+        all_unfiltered_intensity.extend(Cell["Cy5: Mean"].values)
 
 # Calculate overall mean values across all files
 overall_mean_custom_min_value = sum(custom_min_value_list) / len(custom_min_value_list)
