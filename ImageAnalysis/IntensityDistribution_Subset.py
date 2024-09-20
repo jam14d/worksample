@@ -11,14 +11,11 @@ This is useful for biological imaging or any other field where quantifying signa
 
 # Path to data
 path_det = "/Users/jamieannemortel/Downloads/Andrew/detections"
-path_ano = "/Users/jamieannemortel/Downloads/Andrew/annotations"
 os.chdir(path_det)
 
 # Naming stuff
 Pink_posName = "DRD1_Pos"
 Pink_posName_2 = "DRD1_Pos: A2A_Neg"
-Blue_posName = "A2A_Pos"
-Blue_posName_2 = "DRD1_Neg: A2A_Pos"
 
 # Directory creation for saving plots (optional)
 plots_dir = "/Users/jamieannemortel/Downloads/Andrew/plots"
@@ -42,13 +39,13 @@ all_unfiltered_intensity = []
 for f in filelist:
     # Declare some tables for data
     Read_Data = pd.DataFrame()
-    Cell = pd.DataFrame()
 
     # This line reads the .txt file and places it into a table we can look at
     Read_Data = pd.read_csv(f, sep="\t", header=0)
 
-    # Basic calculations from the data
-    Cell = Read_Data[Read_Data['Name'].isin([Pink_posName, Pink_posName_2, Blue_posName, Blue_posName_2])]
+    # Subset the data for Pink_posName only
+    Cell = Read_Data[Read_Data['Name'].isin([Pink_posName,Pink_posName_2])]
+
 
     # Exclude values below the custom intensity threshold
     Cell_filtered = Cell[Cell["Cy5: Mean"] >= custom_intensity_threshold]
@@ -58,10 +55,10 @@ for f in filelist:
         # Plot histogram of the filtered data
         plt.figure(figsize=(10, 6))
         plt.hist(Cell_filtered["Cy5: Mean"], bins=50, range=(min(Cell_filtered["Cy5: Mean"]), max(Cell_filtered["Cy5: Mean"])), color='red', alpha=0.7)
-        plt.title("Histogram of signal intensity in all cells expressing oprm1")
+        plt.title("Histogram of signal intensity in DRD1 Positive cells expressing oprm1")
         plt.xlabel("Intensity")
         plt.ylabel("Frequency")
-        plt.savefig(os.path.join(plots_dir, f"histogram_{f}.png"))
+        plt.savefig(os.path.join(plots_dir, f"histogram_DRD1_Pos_{f}.png"))
         plt.close()
 
         # Normalization step using custom min and max values for each file
@@ -79,18 +76,22 @@ for f in filelist:
         custom_max_value_list.append(custom_max_value)
         all_unfiltered_intensity.extend(Cell["Cy5: Mean"].values)
 
-# Calculate overall mean values across all files
-overall_mean_custom_min_value = sum(custom_min_value_list) / len(custom_min_value_list)
-overall_mean_lower_25th_percentile = sum(lower_25th_percentile_list) / len(lower_25th_percentile_list)
-overall_mean_median_intensity = sum(median_intensity_list) / len(median_intensity_list)
-overall_mean_upper_75th_percentile = sum(upper_75th_percentile_list) / len(upper_75th_percentile_list)
-overall_mean_custom_max_value = sum(custom_max_value_list) / len(custom_max_value_list)
+# Check if the lists are empty before performing calculations
+if custom_min_value_list:
+    # Calculate overall mean values across all files
+    overall_mean_custom_min_value = sum(custom_min_value_list) / len(custom_min_value_list)
+    overall_mean_lower_25th_percentile = sum(lower_25th_percentile_list) / len(lower_25th_percentile_list)
+    overall_mean_median_intensity = sum(median_intensity_list) / len(median_intensity_list)
+    overall_mean_upper_75th_percentile = sum(upper_75th_percentile_list) / len(upper_75th_percentile_list)
+    overall_mean_custom_max_value = sum(custom_max_value_list) / len(custom_max_value_list)
 
-# Create a DataFrame with the overall values
-overall_values = pd.DataFrame({
-    "Metric": ["Custom Min Value", "Lower 25th Percentile Intensity", "50th Percentile Intensity", "Upper 75th Percentile Intensity", "Custom Max Value"],
-    "Overall Value": [overall_mean_custom_min_value, overall_mean_lower_25th_percentile, overall_mean_median_intensity, overall_mean_upper_75th_percentile, overall_mean_custom_max_value]
-})
+    # Create a DataFrame with the overall values
+    overall_values = pd.DataFrame({
+        "Metric": ["Custom Min Value", "Lower 25th Percentile Intensity", "50th Percentile Intensity", "Upper 75th Percentile Intensity", "Custom Max Value"],
+        "Overall Value": [overall_mean_custom_min_value, overall_mean_lower_25th_percentile, overall_mean_median_intensity, overall_mean_upper_75th_percentile, overall_mean_custom_max_value]
+    })
 
-# Writes a csv file with the overall values in the path
-overall_values.to_csv("Overall_Values_minmedmax_normalized_custommax.csv", index=False)
+    # Writes a csv file with the overall values in the path
+    overall_values.to_csv("Overall_Values_minmedmax_normalized_custommax.csv", index=False)
+else:
+    print("No valid data was found for processing.")
