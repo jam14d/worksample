@@ -3,6 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn2, venn2_circles
 
+
+#probably going to change this to use eule 
+
 # Set the paths
 path_det = "/Users/jamieannemortel/Downloads/Andrew/detections"
 path_ano = "/Users/jamieannemortel/Downloads/Andrew/annotations"
