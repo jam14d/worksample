@@ -3,22 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-'''
-Uses .txt files containing stardist segmentation measurements, exported from the open-source software QuPath.
-The primary purpose of this script is to analyze the intensity distribution of detected objects, filter out background noise, perform normalization, and aggregate intensity metrics across multiple datasets. 
-This is useful for biological imaging or any other field where quantifying signal intensity from detections (such as cells in microscopy images).
-'''
-
 # Path to data
-path_det = "/Users/jamieannemortel/Downloads/Andrew/detections"
+path_det = "/Users/jamieannemortel/Downloads/RawData_VGLUT2/detection results"
 os.chdir(path_det)
 
-# Naming stuff
-Pink_posName = "DRD1_Pos"
-Pink_posName_2 = "DRD1_Pos: A2A_Neg"
-
-# Directory creation for saving plots (optional)
-plots_dir = "/Users/jamieannemortel/Downloads/Andrew/plots"
+# Directory for saving plots
+plots_dir = "/Users/jamieannemortel/Downloads/RawData_VGLUT2/plots"
 os.makedirs(plots_dir, exist_ok=True)
 
 # Set the custom intensity value to ignore values below
@@ -43,28 +33,45 @@ for f in filelist:
     # This line reads the .txt file and places it into a table we can look at
     Read_Data = pd.read_csv(f, sep="\t", header=0)
 
-    # Subset the data for Pink_posName only
-    Cell = Read_Data[Read_Data['Name'].isin([Pink_posName,Pink_posName_2])]
+    # Clean column names to remove any leading or trailing spaces
+    Read_Data.columns = Read_Data.columns.str.strip()
 
+    # Print columns to confirm
+    print(f"Processing file: {f}")
+    print("Columns available:", Read_Data.columns)
 
-    # Exclude values below the custom intensity threshold
-    Cell_filtered = Cell[Cell["Cy5: Mean"] >= custom_intensity_threshold]
+    # Subset the data for vglut2_Pos only, or treat it as zero if not found
+    Pink_posName = "vglut2_Pos"
+    Pink_posName_2 = "vglut2_Pos: vgat_Neg"
+
+    if Pink_posName in Read_Data['Name'].values or Pink_posName_2 in Read_Data['Name'].values:
+        Cell = Read_Data[Read_Data['Name'].isin([Pink_posName, Pink_posName_2])]
+    else:
+        print(f"No {Pink_posName} or {Pink_posName_2} found in {f}. Treating as zero intensity data.")
+        # If the `vglut2_Pos` group is not found, we can assume zero values for the analysis
+        Cell = Read_Data.copy()  # Keep the original data, but no relevant 'Pink_posName' entries
+
+    # Exclude values below the custom intensity threshold for 'AF568: Cell: Mean'
+    if "AF568: Cell: Mean" in Read_Data.columns:
+        Cell_filtered = Cell[Cell["AF568: Cell: Mean"] >= custom_intensity_threshold]
+    else:
+        print("Column 'AF568: Cell: Mean' not found in the data!")
 
     # Check if there are any valid values after filtering
     if not Cell_filtered.empty:
         # Plot histogram of the filtered data
         plt.figure(figsize=(10, 6))
-        plt.hist(Cell_filtered["Cy5: Mean"], bins=50, range=(min(Cell_filtered["Cy5: Mean"]), max(Cell_filtered["Cy5: Mean"])), color='red', alpha=0.7)
-        plt.title("Histogram of signal intensity in DRD1 Positive cells expressing oprm1")
+        plt.hist(Cell_filtered["AF568: Cell: Mean"], bins=50, range=(min(Cell_filtered["AF568: Cell: Mean"]), max(Cell_filtered["AF568: Cell: Mean"])), color='red', alpha=0.7)
+        plt.title(f"Histogram of oprm1 mean signal intensity for {Pink_posName}")
         plt.xlabel("Intensity")
         plt.ylabel("Frequency")
-        plt.savefig(os.path.join(plots_dir, f"histogram_DRD1_Pos_{f}.png"))
+        plt.savefig(os.path.join(plots_dir, f"histogram_{Pink_posName}_{f}.png"))
         plt.close()
 
         # Normalization step using custom min and max values for each file
-        custom_min_value = np.min(Cell_filtered["Cy5: Mean"])
-        custom_max_value = np.max(Cell_filtered["Cy5: Mean"])
-        normalized_values = (Cell_filtered["Cy5: Mean"] - custom_min_value) / (custom_max_value - custom_min_value)
+        custom_min_value = np.min(Cell_filtered["AF568: Cell: Mean"])
+        custom_max_value = np.max(Cell_filtered["AF568: Cell: Mean"])
+        normalized_values = (Cell_filtered["AF568: Cell: Mean"] - custom_min_value) / (custom_max_value - custom_min_value)
 
         Quant_Intensity = normalized_values.quantile([0.25, 0.5, 0.75])
 
@@ -74,7 +81,9 @@ for f in filelist:
         median_intensity_list.append(custom_min_value + Quant_Intensity[0.5] * (custom_max_value - custom_min_value))
         upper_75th_percentile_list.append(custom_min_value + Quant_Intensity[0.75] * (custom_max_value - custom_min_value))
         custom_max_value_list.append(custom_max_value)
-        all_unfiltered_intensity.extend(Cell["Cy5: Mean"].values)
+        all_unfiltered_intensity.extend(Cell["AF568: Cell: Mean"].values)
+    else:
+        print(f"No valid data found for {Pink_posName} in {f}")
 
 # Check if the lists are empty before performing calculations
 if custom_min_value_list:
@@ -92,6 +101,6 @@ if custom_min_value_list:
     })
 
     # Writes a csv file with the overall values in the path
-    overall_values.to_csv("Overall_Values_minmedmax_normalized_custommax.csv", index=False)
+    overall_values.to_csv(os.path.join(plots_dir, "Overall_Values_minmedmax_normalized_custommax.csv"), index=False)
 else:
     print("No valid data was found for processing.")

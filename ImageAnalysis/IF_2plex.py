@@ -2,37 +2,37 @@ import os
 import pandas as pd
 
 # Set the paths
-path_det = "/Users/jamieannemortel/Downloads/Andrew/detections"
-path_ano = "/Users/jamieannemortel/Downloads/Andrew/annotations"
+path_det = "/Users/jamieannemortel/Downloads/RawData_VGLUT2/detection results"
+path_ano = "/Users/jamieannemortel/Downloads/RawData_VGLUT2/annotation results"
 
 # Get all .txt files from the directory
 filelist = [f for f in os.listdir(path_det) if f.endswith(".txt")]
 
 # Define Qupath colors
-QPink = "TurboYFP"  # QP Pink
-QPBlue = "mRFP1"   # QP Blue
+QPink = "AF488"  # QP Pink
+QPBlue = "AF647"   # QP Blue
 
 # QP string names
 cell_name = "PathCellObject"
-Pink_posName = "DRD1_Pos"
-Pink_posName_2 = "DRD1_Pos: A2A_Neg"
-Blue_posName = "A2A_Pos"
-Blue_posName_2 = "DRD1_Neg: A2A_Pos"
-double_positive = "DRD1_Pos: A2A_Pos"
+Pink_posName = "vglut2_Pos"
+Pink_posName_2 = "vglut2_Pos: vgat_Neg"
+Blue_posName = "vgat_Pos"
+Blue_posName_2 = "vglut2_Neg: vgat_Pos"
+double_positive = "vglut2_Pos: vgat_Pos"
 
 # Initialize an empty dataframe with relevant columns
 DataDraft = pd.DataFrame(columns=[
     "Sample", 
-    "DRD1-: A2A+ Cell Density (cells/mm^2)", 
-    "DRD1-: A2A+ Cell Count", 
-    "DRD1-: A2A+ Cell Area (mm^2)", 
-    "DRD1-: A2A+ Cell Percentage", 
-    "DRD1-: A2A+ Intensity", 
-    "DRD1+: A2A- Cell Density (cells/mm^2)", 
-    "DRD1+: A2A- Cell Count", 
-    "DRD1+: A2A- Cell Area (mm^2)", 
-    "DRD1+: A2A- Cell Percentage", 
-    "DRD1+: A2A- Intensity", 
+    "vglut2-: vgat+ Cell Density (cells/mm^2)", 
+    "vglut2-: vgat+ Cell Count", 
+    "vglut2-: vgat+ Cell Area (mm^2)", 
+    "vglut2-: vgat+ Cell Percentage", 
+    "vglut2-: vgat+ Intensity", 
+    "vglut2+: vgat- Cell Density (cells/mm^2)", 
+    "vglut2+: vgat- Cell Count", 
+    "vglut2+: vgat- Cell Area (mm^2)", 
+    "vglut2+: vgat- Cell Percentage", 
+    "vglut2+: vgat- Intensity", 
     "Double Positive Cell Density (cells/mm^2)", 
     "Double Positive Cell Count", 
     "Double Positive Cell Area (mm^2)", 
@@ -56,34 +56,34 @@ for k, file in enumerate(filelist):
     QPneg = read_data[read_data['Name'] == cell_name]
 
     # Calculate areas
-    NegativeArea = QPneg['Area µm^2'].sum() / 1e6
-    posPinkArea = QPpink_only['Area µm^2'].sum() / 1e6
-    posBlueArea = QPblue_only['Area µm^2'].sum() / 1e6
-    posBothArea = QPboth['Area µm^2'].sum() / 1e6
+    NegativeArea = QPneg['Cell: Area µm^2'].sum() / 1e6
+    posPinkArea = QPpink_only['Cell: Area µm^2'].sum() / 1e6
+    posBlueArea = QPblue_only['Cell: Area µm^2'].sum() / 1e6
+    posBothArea = QPboth['Cell: Area µm^2'].sum() / 1e6
     totalCellArea = NegativeArea + posPinkArea + posBlueArea + posBothArea
 
     realAnnotations = read_data_ano[read_data_ano['Name'].isin(["Annotation", "PathAnnotationObject"])]
     anoArea = realAnnotations['Area µm^2'].sum() / 1e6
 
     # Calculate mean intensity for each channel
-    pinkIntensity = QPpink_only['TurboYFP: Mean'].mean()
-    blueIntensity = QPblue_only['mRFP1.2: Mean'].mean()
+    pinkIntensity = QPpink_only['AF488: Cell: Mean'].mean()
+    blueIntensity = QPblue_only['AF647: Cell: Mean'].mean()
 
     totalCells = len(QPpink_only) + len(QPblue_only) + len(QPboth) + len(QPneg)
 
     # Fill in DataDraft
     DataDraft.loc[k, "Sample"] = filename
-    DataDraft.loc[k, "DRD1-: A2A+ Cell Density (cells/mm^2)"] = len(QPblue_only) / totalCellArea
-    DataDraft.loc[k, "DRD1-: A2A+ Cell Count"] = len(QPblue_only)
-    DataDraft.loc[k, "DRD1-: A2A+ Cell Area (mm^2)"] = posBlueArea
-    DataDraft.loc[k, "DRD1-: A2A+ Cell Percentage"] = len(QPblue_only) / totalCells
-    DataDraft.loc[k, "DRD1-: A2A+ Intensity"] = blueIntensity
+    DataDraft.loc[k, "vglut2-: vgat+ Cell Density (cells/mm^2)"] = len(QPblue_only) / totalCellArea
+    DataDraft.loc[k, "vglut2-: vgat+ Cell Count"] = len(QPblue_only)
+    DataDraft.loc[k, "vglut2-: vgat+ Cell Area (mm^2)"] = posBlueArea
+    DataDraft.loc[k, "vglut2-: vgat+ Cell Percentage"] = len(QPblue_only) / totalCells
+    DataDraft.loc[k, "vglut2-: vgat+ Intensity"] = blueIntensity
 
-    DataDraft.loc[k, "DRD1+: A2A- Cell Density (cells/mm^2)"] = len(QPpink_only) / totalCellArea
-    DataDraft.loc[k, "DRD1+: A2A- Cell Count"] = len(QPpink_only)
-    DataDraft.loc[k, "DRD1+: A2A- Cell Area (mm^2)"] = posPinkArea
-    DataDraft.loc[k, "DRD1+: A2A- Cell Percentage"] = len(QPpink_only) / totalCells
-    DataDraft.loc[k, "DRD1+: A2A- Intensity"] = pinkIntensity
+    DataDraft.loc[k, "vglut2+: vgat- Cell Density (cells/mm^2)"] = len(QPpink_only) / totalCellArea
+    DataDraft.loc[k, "vglut2+: vgat- Cell Count"] = len(QPpink_only)
+    DataDraft.loc[k, "vglut2+: vgat- Cell Area (mm^2)"] = posPinkArea
+    DataDraft.loc[k, "vglut2+: vgat- Cell Percentage"] = len(QPpink_only) / totalCells
+    DataDraft.loc[k, "vglut2+: vgat- Intensity"] = pinkIntensity
 
     DataDraft.loc[k, "Double Positive Cell Density (cells/mm^2)"] = len(QPboth) / totalCellArea
     DataDraft.loc[k, "Double Positive Cell Count"] = len(QPboth)
