@@ -1,2 +1,32 @@
-Sample,DRD1-: A2A+ Cell Density (cells/mm^2),DRD1-: A2A+ Cell Count,DRD1-: A2A+ Cell Area (mm^2),DRD1-: A2A+ Cell Percentage,DRD1-: A2A+ Intensity,DRD1+: A2A- Cell Density (cells/mm^2),DRD1+: A2A- Cell Count,DRD1+: A2A- Cell Area (mm^2),DRD1+: A2A- Cell Percentage,DRD1+: A2A- Intensity,Double Positive Cell Density (cells/mm^2),Double Positive Cell Count,Double Positive Cell Area (mm^2),Double Positive Cell Percentage,Total Cell Count,Total Cell Area (mm^2),Total Annotation Area (mm^2)
-Snap-05.czi.txt,3844.941908383791,284,0.0257748082,0.3631713554987212,0,5063.409414561753,374,0.0333476367,0.4782608695652174,2365.0903743315507,1678.777452956303,124,0.014740829699999998,0.1585677749360614,782,0.0738632746,0.3122608
+Sample,vglut2-: vgat+ Cell Density (cells/mm^2),vglut2-: vgat+ Cell Count,vglut2-: vgat+ Cell Area (mm^2),vglut2-: vgat+ Cell Percentage,vglut2-: vgat+ Intensity,vglut2+: vgat- Cell Density (cells/mm^2),vglut2+: vgat- Cell Count,vglut2+: vgat- Cell Area (mm^2),vglut2+: vgat- Cell Percentage,vglut2+: vgat- Intensity,Double Positive Cell Density (cells/mm^2),Double Positive Cell Count,Double Positive Cell Area (mm^2),Double Positive Cell Percentage,Total Cell Area (mm^2),Total Annotation Area (mm^2)
+2024_06_25__RecognizedCode-13.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-13.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-15.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_05_23__C1595b_scan2.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_05_23__C1595b_scan2.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-15.czi - Scene #4.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-13.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-15.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_05_23__C1595b_scan2.czi - Scene #4.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_05_23__C1595b_scan2.czi - Scene #5.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-15.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-13.czi - Scene #0.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-15.czi - Scene #5.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_05_23__C1595b_scan2.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-19.czi - Scene #5.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-11.czi - Scene #4.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-17.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-19.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-11.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-11.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-19.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_06_23__RecognizedCode-2.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-19.czi - Scene #4.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_06_23__RecognizedCode-2.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_06_23__RecognizedCode-2.czi - Scene #4.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-19.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-17.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-17.czi - Scene #3.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-11.czi - Scene #1.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2024_06_25__RecognizedCode-17.czi - Scene #4.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
+2023_06_23__RecognizedCode-2.czi - Scene #2.txt,0,0,0,,0,0,0,0,,0,0,0,0,,0,0
