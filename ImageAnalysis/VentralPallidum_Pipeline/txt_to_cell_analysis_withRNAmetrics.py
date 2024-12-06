@@ -3,10 +3,10 @@ import pandas as pd
 
 # Define all paths in a single dictionary (Windows-style)
 paths = {
-    "raw_detection": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\detections_iteration4",
-    "raw_annotation": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\annotations_iteration4",
-    "detection_csv": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\detections_csv",
-    "annotation_csv": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\annotations_csv"
+    "raw_detection": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\detections_iteration4_withMu_12.6.24",
+    "raw_annotation": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\annotations_iteration4_withMu_12.6.24",
+    "detection_csv": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\detections_withMu_12.6.24_csv",
+    "annotation_csv": r"C:\Users\Jamie\Documents\BRAIN STUFF\VP_qp_LF - ITERATION4\annotations_withMu_12.6.24_csv"
 }
 
 # Function to convert Windows paths to Unix-like paths if running in a Unix environment
@@ -52,6 +52,7 @@ Pink_posName_2 = "vglut2_Pos: vgat_Neg"
 Blue_posName = "vgat_Pos"
 Blue_posName_2 = "vglut2_Neg: vgat_Pos"
 double_positive = "vglut2_Pos: vgat_Pos"
+double_negative = "vglut2_Neg: vgat_Neg"
 
 # Additional subcellular metric columns
 subcellular_metrics = [
@@ -79,6 +80,10 @@ DataDraft = pd.DataFrame(columns=[
     "Double Positive Cell Count",
     "Double Positive Cell Area (mm^2)",
     "Double Positive Cell Percentage",
+    "Double Negative Cell Density (cells/mm^2)",
+    "Double Negative Cell Count",
+    "Double Negative Cell Area (mm^2)",
+    "Double Negative Cell Percentage",
     "Total Cell Area (mm^2)",
     "Total Annotation Area (mm^2)"
 ] + [f"{metric} ({cls})" for metric in subcellular_metrics for cls in [Pink_posName_2, Blue_posName_2, double_positive]])
@@ -97,11 +102,13 @@ for k, file in enumerate(filelist):
         QPpink_only = det_data[det_data['Classification'].isin([Pink_posName, Pink_posName_2])]
         QPblue_only = det_data[det_data['Classification'].isin([Blue_posName, Blue_posName_2])]
         QPboth = det_data[det_data['Classification'] == double_positive]
+        QPnone = det_data[det_data['Classification'] == double_negative]
 
         # Calculate areas and statistics
         posPinkArea = QPpink_only['Cell: Area µm^2'].sum() / 1e6 if not QPpink_only.empty else 0
         posBlueArea = QPblue_only['Cell: Area µm^2'].sum() / 1e6 if not QPblue_only.empty else 0
         posBothArea = QPboth['Cell: Area µm^2'].sum() / 1e6 if not QPboth.empty else 0
+        posNoneArea = QPnone['Cell: Area µm^2'].sum() / 1e6 if not QPnone.empty else 0
         totalCellArea = posPinkArea + posBlueArea + posBothArea
 
         realAnnotations = ano_data[ano_data['Object type'].isin(["Annotation", "PathAnnotationObject"])]
@@ -113,11 +120,13 @@ for k, file in enumerate(filelist):
         pinkCellCount = len(QPpink_only)
         blueCellCount = len(QPblue_only)
         bothCellCount = len(QPboth)
+        noneCellCount = len(QPnone)
         totalCells = pinkCellCount + blueCellCount + bothCellCount
 
         pinkPercentage = (pinkCellCount / totalCells * 100) if totalCells > 0 else None
         bluePercentage = (blueCellCount / totalCells * 100) if totalCells > 0 else None
         bothPercentage = (bothCellCount / totalCells * 100) if totalCells > 0 else None
+        nonePercentage = (noneCellCount / totalCells * 100) if totalCells > 0 else None
 
         # Populate DataDraft
         DataDraft.loc[k, "Sample"] = filename
@@ -138,11 +147,16 @@ for k, file in enumerate(filelist):
         DataDraft.loc[k, "Double Positive Cell Area (mm^2)"] = posBothArea
         DataDraft.loc[k, "Double Positive Cell Percentage"] = bothPercentage
 
+        DataDraft.loc[k, "Double Negative Cell Density (cells/mm^2)"] = (noneCellCount / totalCellArea) if totalCellArea > 0 else None
+        DataDraft.loc[k, "Double Negative Cell Count"] = noneCellCount
+        DataDraft.loc[k, "Double Negative Cell Area (mm^2)"] = posNoneArea
+        DataDraft.loc[k, "Double Negative Cell Percentage"] = nonePercentage
+
         DataDraft.loc[k, "Total Cell Area (mm^2)"] = totalCellArea
         DataDraft.loc[k, "Total Annotation Area (mm^2)"] = anoArea
 
         # Subcellular metrics
-        for cls in [Pink_posName_2, Blue_posName_2, double_positive]:
+        for cls in [Pink_posName_2, Blue_posName_2, double_positive, double_negative]:
             cls_data = det_data[det_data['Classification'] == cls]
             for metric in subcellular_metrics:
                 DataDraft.loc[k, f"{metric} ({cls})"] = cls_data[metric].sum() if metric in cls_data.columns else None
@@ -151,5 +165,5 @@ for k, file in enumerate(filelist):
         print(f"Error processing {file}: {e}")
 
 # Write the results to CSV and XLSX
-DataDraft.to_csv("SUBCELLULARMETRICS_processed_data_with_subcellular_metrics.csv", index=False)
-DataDraft.to_excel("SUBCELLULARMETRICS_processed_data_with_subcellular_metrics.xlsx", index=False)
+DataDraft.to_csv("12.6.24_MU_SUBCELLULARMETRICS_WITHNEG_processed_data_with_subcellular_metrics.csv", index=False)
+DataDraft.to_excel("12.6.24_MU__SUBCELLULARMETRICS_WITHNEG_processed_data_with_subcellular_metrics.xlsx", index=False)

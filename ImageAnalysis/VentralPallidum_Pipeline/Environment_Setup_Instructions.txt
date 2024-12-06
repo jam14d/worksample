@@ -1,0 +1,66 @@
+
+### Environment Setup: Python Virtual Environment
+
+#### Environment Information:
+- **Python Version**: Python 3.8
+- **Virtual Environment Name**: `myenv`
+
+#### How to Activate the Environment:
+1. Navigate to the project directory:
+   ```
+   cd /mnt/c/Users/Jamie/Documents/Projects/ImageAnalysis/VentralPallidum_Pipeline
+   ```
+2. Activate the virtual environment:
+   ```
+   source myenv/bin/activate
+   ```
+
+---
+
+### Summary of Steps:
+
+1. **Checked Python Version**:
+   ```
+   python3 --version
+   ```
+   - Verified Python 3.6.9 initially.
+
+2. **Updated Python Alternatives to 3.8**:
+   ```
+   sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+   sudo update-alternatives --config python3
+   ```
+   - Configured Python 3.8 as the default.
+
+3. **Installed `venv` Module**:
+   ```
+   sudo apt install python3.8-venv
+   ```
+
+4. **Created and Activated Virtual Environment**:
+   ```
+   python3 -m venv myenv
+   source myenv/bin/activate
+   ```
+
+5. **Upgraded `pip`**:
+   ```
+   pip install --upgrade pip
+   ```
+
+6. **Installed Required Packages**:
+   - `Cython`:
+     ```
+     pip install Cython
+     ```
+   - `streamlit`:
+     ```
+     pip install streamlit
+     ```
+   - **Newly Added**: `matplotlib` and 'seaborn':
+     ```
+     pip install matplotlib
+     pip install seaborn
+     ```
+
+---
