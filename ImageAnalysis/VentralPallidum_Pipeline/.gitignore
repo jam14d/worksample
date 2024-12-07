@@ -1,0 +1,2 @@
+myenv/
+*.csv  # Or other file types you don't want to track
