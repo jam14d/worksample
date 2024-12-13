@@ -1,6 +1,10 @@
 import os
 import pandas as pd
 
+##SPECIFIC TO VGAT2: OPRM1 COMPOSITE
+##IN PROGRESS!
+
+
 # Define all paths in a single dictionary (Windows-style)
 paths = {
     "raw_detection": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/detections_iteration4_withMu_SPOTSIZE_12.13.24",
