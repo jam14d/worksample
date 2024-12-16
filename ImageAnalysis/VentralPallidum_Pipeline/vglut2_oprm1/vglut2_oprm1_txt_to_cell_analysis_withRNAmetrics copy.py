@@ -1,6 +1,10 @@
 import os
 import pandas as pd
 
+##SPECIFIC TO vglut22: OPRM1 COMPOSITE
+##IN PROGRESS!
+
+
 # Define all paths in a single dictionary (Windows-style)
 paths = {
     "raw_detection": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/detections_iteration4_withMu_SPOTSIZE_12.13.24",
@@ -44,15 +48,15 @@ convert_text_to_csv(paths["raw_annotation"], paths["annotation_csv"])
 filelist = [f for f in os.listdir(paths["detection_csv"]) if f.endswith(".csv")]
 
 # Define Qupath colors and classifications
-QPink = "AF488"
-QPBlue = "AF647"
+QYellow = "AF568"
+QPPink = "AF647"
 
+Yellow_posName = "oprm1_Pos"
+Yellow_posName_2 = "oprm1_Pos: vglut2_Neg"
 Pink_posName = "vglut2_Pos"
-Pink_posName_2 = "vglut2_Pos: vgat_Neg"
-Blue_posName = "vgat_Pos"
-Blue_posName_2 = "vglut2_Neg: vgat_Pos"
-double_positive = "vglut2_Pos: vgat_Pos"
-double_negative = "vglut2_Neg: vgat_Neg"
+Pink_posName_2 = "oprm1_Neg: vglut2_Pos"
+double_positive = "oprm1_Pos: vglut2_Pos"
+double_negative = "oprm1_Neg: vglut2_Neg"
 
 # Additional subcellular metric columns
 subcellular_metrics = [
@@ -66,16 +70,16 @@ subcellular_metrics = [
 # Initialize an empty dataframe with relevant columns
 DataDraft = pd.DataFrame(columns=[
     "Sample",
-    "vglut2-: vgat+ Cell Density (cells/mm^2)",
-    "vglut2-: vgat+ Cell Count",
-    "vglut2-: vgat+ Cell Area (mm^2)",
-    "vglut2-: vgat+ Cell Percentage",
-    "vglut2-: vgat+ Intensity",
-    "vglut2+: vgat- Cell Density (cells/mm^2)",
-    "vglut2+: vgat- Cell Count",
-    "vglut2+: vgat- Cell Area (mm^2)",
-    "vglut2+: vgat- Cell Percentage",
-    "vglut2+: vgat- Intensity",
+    "oprm1-: vglut2+ Cell Density (cells/mm^2)",
+    "oprm1-: vglut2+ Cell Count",
+    "oprm1-: vglut2+ Cell Area (mm^2)",
+    "oprm1-: vglut2+ Cell Percentage",
+    "oprm1-: vglut2+ Intensity",
+    "oprm1+: vglut2- Cell Density (cells/mm^2)",
+    "oprm1+: vglut2- Cell Count",
+    "oprm1+: vglut2- Cell Area (mm^2)",
+    "oprm1+: vglut2- Cell Percentage",
+    "oprm1+: vglut2- Intensity",
     "Double Positive Cell Density (cells/mm^2)",
     "Double Positive Cell Count",
     "Double Positive Cell Area (mm^2)",
@@ -86,7 +90,7 @@ DataDraft = pd.DataFrame(columns=[
     "Double Negative Cell Percentage",
     "Total Cell Area (mm^2)",
     "Total Annotation Area (mm^2)"
-] + [f"{metric} ({cls})" for metric in subcellular_metrics for cls in [Pink_posName_2, Blue_posName_2, double_positive]])
+] + [f"{metric} ({cls})" for metric in subcellular_metrics for cls in [Yellow_posName_2, Pink_posName_2, double_positive]])
 
 # Process each file
 for k, file in enumerate(filelist):
@@ -99,48 +103,48 @@ for k, file in enumerate(filelist):
         ano_data = pd.read_csv(ano_file)
 
         # Subset data for specific cell populations
-        QPpink_only = det_data[det_data['Classification'].isin([Pink_posName, Pink_posName_2])]
-        QPblue_only = det_data[det_data['Classification'].isin([Blue_posName, Blue_posName_2])]
+        QPYellow_only = det_data[det_data['Classification'].isin([Yellow_posName, Yellow_posName_2])]
+        QPPink_only = det_data[det_data['Classification'].isin([Pink_posName, Pink_posName_2])]
         QPboth = det_data[det_data['Classification'] == double_positive]
         QPnone = det_data[det_data['Classification'] == double_negative]
 
         # Calculate areas and statistics
-        posPinkArea = QPpink_only['Cell: Area µm^2'].sum() / 1e6 if not QPpink_only.empty else 0
-        posBlueArea = QPblue_only['Cell: Area µm^2'].sum() / 1e6 if not QPblue_only.empty else 0
+        posYellowArea = QPYellow_only['Cell: Area µm^2'].sum() / 1e6 if not QPYellow_only.empty else 0
+        posPinkArea = QPPink_only['Cell: Area µm^2'].sum() / 1e6 if not QPPink_only.empty else 0
         posBothArea = QPboth['Cell: Area µm^2'].sum() / 1e6 if not QPboth.empty else 0
         posNoneArea = QPnone['Cell: Area µm^2'].sum() / 1e6 if not QPnone.empty else 0
-        totalCellArea = posPinkArea + posBlueArea + posBothArea
+        totalCellArea = posYellowArea + posPinkArea + posBothArea
 
         realAnnotations = ano_data[ano_data['Object type'].isin(["Annotation", "PathAnnotationObject"])]
         anoArea = realAnnotations['Area µm^2'].sum() / 1e6 if not realAnnotations.empty else 0
 
-        pinkIntensity = QPpink_only['AF488: Cell: Mean'].mean() if not QPpink_only.empty else None
-        blueIntensity = QPblue_only['AF647: Cell: Mean'].mean() if not QPblue_only.empty else None
+        YellowIntensity = QPYellow_only['AF488: Cell: Mean'].mean() if not QPYellow_only.empty else None
+        PinkIntensity = QPPink_only['AF647: Cell: Mean'].mean() if not QPPink_only.empty else None
 
-        pinkCellCount = len(QPpink_only)
-        blueCellCount = len(QPblue_only)
+        YellowCellCount = len(QPYellow_only)
+        PinkCellCount = len(QPPink_only)
         bothCellCount = len(QPboth)
         noneCellCount = len(QPnone)
-        totalCells = pinkCellCount + blueCellCount + bothCellCount
+        totalCells = YellowCellCount + PinkCellCount + bothCellCount
 
-        pinkPercentage = (pinkCellCount / totalCells * 100) if totalCells > 0 else None
-        bluePercentage = (blueCellCount / totalCells * 100) if totalCells > 0 else None
+        YellowPercentage = (YellowCellCount / totalCells * 100) if totalCells > 0 else None
+        PinkPercentage = (PinkCellCount / totalCells * 100) if totalCells > 0 else None
         bothPercentage = (bothCellCount / totalCells * 100) if totalCells > 0 else None
         nonePercentage = (noneCellCount / totalCells * 100) if totalCells > 0 else None
 
         # Populate DataDraft
         DataDraft.loc[k, "Sample"] = filename
-        DataDraft.loc[k, "vglut2-: vgat+ Cell Density (cells/mm^2)"] = (blueCellCount / totalCellArea) if totalCellArea > 0 else None
-        DataDraft.loc[k, "vglut2-: vgat+ Cell Count"] = blueCellCount
-        DataDraft.loc[k, "vglut2-: vgat+ Cell Area (mm^2)"] = posBlueArea
-        DataDraft.loc[k, "vglut2-: vgat+ Cell Percentage"] = bluePercentage
-        DataDraft.loc[k, "vglut2-: vgat+ Intensity"] = blueIntensity
+        DataDraft.loc[k, "oprm1-: vglut2+ Cell Density (cells/mm^2)"] = (PinkCellCount / totalCellArea) if totalCellArea > 0 else None
+        DataDraft.loc[k, "oprm1-: vglut2+ Cell Count"] = PinkCellCount
+        DataDraft.loc[k, "oprm1-: vglut2+ Cell Area (mm^2)"] = posPinkArea
+        DataDraft.loc[k, "oprm1-: vglut2+ Cell Percentage"] = PinkPercentage
+        DataDraft.loc[k, "oprm1-: vglut2+ Intensity"] = PinkIntensity
 
-        DataDraft.loc[k, "vglut2+: vgat- Cell Density (cells/mm^2)"] = (pinkCellCount / totalCellArea) if totalCellArea > 0 else None
-        DataDraft.loc[k, "vglut2+: vgat- Cell Count"] = pinkCellCount
-        DataDraft.loc[k, "vglut2+: vgat- Cell Area (mm^2)"] = posPinkArea
-        DataDraft.loc[k, "vglut2+: vgat- Cell Percentage"] = pinkPercentage
-        DataDraft.loc[k, "vglut2+: vgat- Intensity"] = pinkIntensity
+        DataDraft.loc[k, "oprm1+: vglut2- Cell Density (cells/mm^2)"] = (YellowCellCount / totalCellArea) if totalCellArea > 0 else None
+        DataDraft.loc[k, "oprm1+: vglut2- Cell Count"] = YellowCellCount
+        DataDraft.loc[k, "oprm1+: vglut2- Cell Area (mm^2)"] = posYellowArea
+        DataDraft.loc[k, "oprm1+: vglut2- Cell Percentage"] = YellowPercentage
+        DataDraft.loc[k, "oprm1+: vglut2- Intensity"] = YellowIntensity
 
         DataDraft.loc[k, "Double Positive Cell Density (cells/mm^2)"] = (bothCellCount / totalCellArea) if totalCellArea > 0 else None
         DataDraft.loc[k, "Double Positive Cell Count"] = bothCellCount
@@ -156,7 +160,7 @@ for k, file in enumerate(filelist):
         DataDraft.loc[k, "Total Annotation Area (mm^2)"] = anoArea
 
         # Subcellular metrics
-        for cls in [Pink_posName_2, Blue_posName_2, double_positive, double_negative]:
+        for cls in [Yellow_posName_2, Pink_posName_2, double_positive, double_negative]:
             cls_data = det_data[det_data['Classification'] == cls]
             for metric in subcellular_metrics:
                 DataDraft.loc[k, f"{metric} ({cls})"] = cls_data[metric].sum() if metric in cls_data.columns else None
