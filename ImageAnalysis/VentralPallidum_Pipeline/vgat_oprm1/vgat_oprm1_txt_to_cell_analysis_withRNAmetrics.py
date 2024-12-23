@@ -7,10 +7,10 @@ import pandas as pd
 
 # Define all paths in a single dictionary (Windows-style)
 paths = {
-    "raw_detection": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/detections_iteration4_withMu_SPOTSIZE_12.13.24",
-    "raw_annotation": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/annotations_iteration4_withMu_SPOTSIZE_12.13.24",
-    "detection_csv": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/detections_iteration4_withMu_SPOTSIZE_12.13.24_CSV",
-    "annotation_csv": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/annotations_iteration4_withMu_SPOTSIZE_12.13.24_CSV"
+    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24",
+    "raw_annotation": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24",
+    "detection_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24_CSV",
+    "annotation_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24_CSV"
 }
 
 # Function to convert Windows paths to Unix-like paths if running in a Unix environment
@@ -52,11 +52,11 @@ QYellow = "AF568"
 QPBlue = "AF647"
 
 Yellow_posName = "oprm1_Pos"
-Yellow_posName_2 = "oprm1_Pos: vgat_Neg"
+Yellow_posName_2 = "vgat_Neg: oprm1_Pos"
 Blue_posName = "vgat_Pos"
-Blue_posName_2 = "oprm1_Neg: vgat_Pos"
-double_positive = "oprm1_Pos: vgat_Pos"
-double_negative = "oprm1_Neg: vgat_Neg"
+Blue_posName_2 = "vgat_Pos: oprm1_Neg"
+double_positive = "vgat_Pos: oprm1_Pos"
+double_negative = "vgat_Neg: oprm1_Neg"
 
 # Additional subcellular metric columns
 subcellular_metrics = [
@@ -169,5 +169,5 @@ for k, file in enumerate(filelist):
         print(f"Error processing {file}: {e}")
 
 # Write the results to CSV and XLSX
-DataDraft.to_csv("12.13.24_MU_SUBCELLULARMETRICS_WITHNEG_processed_data_with_subcellular_metrics.csv", index=False)
-DataDraft.to_excel("12.13.24_MU__SUBCELLULARMETRICS_WITHNEG_processed_data_with_subcellular_metrics.xlsx", index=False)
+DataDraft.to_csv("12.16.24_OPRM1CELLCOUNTS.csv", index=False)
+DataDraft.to_excel("12.16.24_OPRM1CELLCOUNTS.xlsx", index=False)
