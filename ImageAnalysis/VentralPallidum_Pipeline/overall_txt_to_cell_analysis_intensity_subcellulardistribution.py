@@ -11,8 +11,8 @@ import numpy as np
 # For text files:
 input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/detections_iteration4_withMu_12.23.24"
 
-overall_plots_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/output_cluster_intensity_overall_plots"
-overall_data_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/output_cluster_intensity_overall_data"
+overall_plots_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/outputintensity_overall_plots"
+overall_data_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/outputintensity_overall_data"
 os.makedirs(overall_plots_directory, exist_ok=True)
 os.makedirs(overall_data_directory, exist_ok=True)
 
@@ -86,8 +86,8 @@ for cls in classifications:
         # Generate and save histogram for this cell type
         plt.figure()
         cls_data.hist(bins=20, edgecolor="black", alpha=0.7)
-        plt.title(f"Overall Distribution of OPRM1 Cluster Intensity Per Cell\n{cls}", fontsize=10)
-        plt.xlabel("OPRM1 Cluster Intensity Per Cell")
+        plt.title(f"Overall Distribution of OPRM1 Intensity Per Cell\n{cls}", fontsize=10)
+        plt.xlabel("OPRM1 Intensity Per Cell")
         plt.ylabel("Frequency")
         plt.tight_layout()
 
@@ -101,8 +101,8 @@ for cls in classifications:
 
         plt.figure()
         plt.plot(sorted_data, cdf, marker="o", linestyle="--", color="blue")
-        plt.title(f"CDF of OPRM1 Cluster Intensity Per Cell\n{cls}", fontsize=10)
-        plt.xlabel("OPRM1 Cluster Intensity Per Cell")
+        plt.title(f"CDF of OPRM1 Intensity Per Cell\n{cls}", fontsize=10)
+        plt.xlabel("OPRM1 Intensity Per Cell")
         plt.ylabel("CDF")
         plt.tight_layout()
 
@@ -112,6 +112,6 @@ for cls in classifications:
 
 # Save overall descriptive statistics to CSV
 overall_statistics_df = pd.DataFrame(overall_statistics_data)
-overall_statistics_output_path = os.path.join(overall_data_directory, "oprm1intensity_cluster_overall_descriptive_statistics.csv")
+overall_statistics_output_path = os.path.join(overall_data_directory, "oprm1intensityoverall_descriptive_statistics.csv")
 overall_statistics_df.to_csv(overall_statistics_output_path, index=False)
 print(f"Intensity overall descriptive statistics saved to {overall_statistics_output_path}.")
