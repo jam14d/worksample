@@ -9,7 +9,7 @@ import numpy as np
 # input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/detections_withMu_12.6.24_csv"
 
 # For text files:
-input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/detections_iteration4_withMu_12.6.24"
+input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/detections_iteration4_withMu_12.23.24"
 
 overall_plots_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/output_cluster_intensity_overall_plots"
 overall_data_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/output_cluster_intensity_overall_data"
@@ -18,10 +18,10 @@ os.makedirs(overall_data_directory, exist_ok=True)
 
 # Define classifications
 classifications = [
-    "Cell (vglut2_Pos: vgat_Neg)",
-    "Cell (vglut2_Neg: vgat_Pos)",
-    "Cell (vglut2_Pos: vgat_Pos)",
-    "Cell (vglut2_Neg: vgat_Neg)"
+    "vglut2_Pos: vgat_Neg",
+    "vglut2_Neg: vgat_Pos",
+    "vglut2_Pos: vgat_Pos",
+    "vglut2_Neg: vgat_Neg"
 ]
 metric_column = "AF568: Cell: Mean"
 
@@ -43,16 +43,16 @@ for file in os.listdir(input_directory):
             
             df.columns = df.columns.str.strip()  # Normalize column names
 
-            if "Parent" not in df.columns or metric_column not in df.columns:
+            if "Classification" not in df.columns or metric_column not in df.columns:
                 print(f"Skipping file {file}: Missing required columns.")
                 continue
 
-            df["Parent"] = df["Parent"].str.strip()  # Normalize Parent values
+            df["Classification"] = df["Classification"].str.strip()  # Normalize Classification values
 
             # Append relevant data to the overall dataset
             for cls in classifications:
-                parent_data = df[df["Parent"] == cls][metric_column].dropna()
-                overall_distribution_data.extend([(cls, spots) for spots in parent_data])
+                Classification_data = df[df["Classification"] == cls][metric_column].dropna()
+                overall_distribution_data.extend([(cls, spots) for spots in Classification_data])
 
         except Exception as e:
             print(f"Error processing file {file}: {e}")
@@ -61,7 +61,9 @@ for file in os.listdir(input_directory):
 overall_df = pd.DataFrame(overall_distribution_data, columns=["Cell Type", "AF568: Cell: Mean"])
 
 ## DEBUG
-print(overall_df.head(10))
+print(overall_df.head())
+print(overall_df["AF568: Cell: Mean"].dtype)
+
 
 # Calculate overall descriptive statistics
 overall_statistics_data = []
@@ -84,7 +86,7 @@ for cls in classifications:
         # Generate and save histogram for this cell type
         plt.figure()
         cls_data.hist(bins=20, edgecolor="black", alpha=0.7)
-        plt.title(f"TEST_Overall Distribution of OPRM1 Cluster Intensity Per Cell\n{cls}", fontsize=10)
+        plt.title(f"Overall Distribution of OPRM1 Cluster Intensity Per Cell\n{cls}", fontsize=10)
         plt.xlabel("OPRM1 Cluster Intensity Per Cell")
         plt.ylabel("Frequency")
         plt.tight_layout()
@@ -99,17 +101,17 @@ for cls in classifications:
 
         plt.figure()
         plt.plot(sorted_data, cdf, marker="o", linestyle="--", color="blue")
-        plt.title(f"TEST_CDF of OPRM1 Cluster Intensity Per Cell\n{cls}", fontsize=10)
+        plt.title(f"CDF of OPRM1 Cluster Intensity Per Cell\n{cls}", fontsize=10)
         plt.xlabel("OPRM1 Cluster Intensity Per Cell")
         plt.ylabel("CDF")
         plt.tight_layout()
 
-        cdf_path = os.path.join(overall_plots_directory, f"Overall_{cls.replace(': ', '_').replace(' ', '_')}_CDF.png")
+        cdf_path = os.path.join(overall_plots_directory, f"Overall_{cls.replace(': ', '_').replace(' ', '_')}CDF.png")
         plt.savefig(cdf_path)
         plt.close()
 
 # Save overall descriptive statistics to CSV
 overall_statistics_df = pd.DataFrame(overall_statistics_data)
-overall_statistics_output_path = os.path.join(overall_data_directory, "TEST_oprm1intensity_cluster_overall_descriptive_statistics.csv")
+overall_statistics_output_path = os.path.join(overall_data_directory, "oprm1intensity_cluster_overall_descriptive_statistics.csv")
 overall_statistics_df.to_csv(overall_statistics_output_path, index=False)
 print(f"Intensity overall descriptive statistics saved to {overall_statistics_output_path}.")
