@@ -1,0 +1,301 @@
+Sample,Classification,Metric,Min,Median,Mean,Max,Count
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,6.428224324324324,100.8243,74
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.527027027027027,14.0,74
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,1.135135135135135,18.0,74
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,2.0,6.58894103773585,115.1922,636
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,2.056603773584906,26.0,636
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.9889937106918238,21.0,636
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,3.3679,15.945,17.668275,35.4152,4
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,1.0,4.5,4.25,7.0,4
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,1.0,2.0,2.5,5.0,4
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.7276856745479832,176.5983,1438
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.6293463143254521,19.0,1438
+2024_06_25__RecognizedCode-13.czi - Scene #0.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.2573018080667594,28.0,1438
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,7.756408403361345,95.9816,119
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.8067226890756303,13.0,119
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,1.2857142857142858,17.0,119
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,3.3679,10.577824585635359,261.0608,1086
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,2.738489871086556,44.0,1086
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,1.6243093922651934,34.0,1086
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,1.0,10.7092,13.298785714285714,28.89,7
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,1.0,4.0,3.7142857142857144,9.0,7
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,2.0,2.4285714285714284,6.0,7
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,2.3724613131313133,265.1615,1980
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.7565656565656566,26.0,1980
+2024_06_25__RecognizedCode-13.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.3621212121212121,35.0,1980
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.5,1.1973285714285713,4.0,14
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,1.0,4.0,14
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.07142857142857142,1.0,14
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,1.0,3.474801038062284,68.1213,289
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,1.3840830449826989,18.0,289
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.5294117647058824,13.0,289
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.432749253731343,129.293,1407
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.6496090973702914,18.0,1407
+2024_06_25__RecognizedCode-13.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.19616204690831557,21.0,1407
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,12.885855813953489,279.3691,43
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,2.395348837209302,26.0,43
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,1.5813953488372092,25.0,43
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,2.0,5.253112742382272,93.3793,361
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,1.7700831024930748,18.0,361
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.8060941828254847,11.0,361
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,20.9168,20.9168,20.9168,20.9168,1
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,0.0,0.0,0.0,1
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,3.0,3.0,3.0,3.0,1
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.8257231254379818,170.4174,1427
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.7238962859145059,24.0,1427
+2024_06_25__RecognizedCode-13.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.255781359495445,20.0,1427
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,2.5453866666666665,9.6824,15
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.4666666666666666,5.0,15
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.26666666666666666,2.0,15
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,4.3412,13.532569756097562,258.3455,205
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,2.7170731707317075,18.0,205
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.1951219512195124,31.0,205
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,3.4105847457627116,92.3258,590
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.088135593220339,16.0,590
+2024_06_25__RecognizedCode-11.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.5322033898305085,11.0,590
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.5,3.573988888888889,19.3916,18
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.8333333333333334,4.0,18
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.7222222222222222,3.0,18
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,3.9466,10.313715035799524,183.1769,419
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,2.954653937947494,26.0,419
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,1.6372315035799523,28.0,419
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,2.1899994405594407,71.0648,715
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.8111888111888111,17.0,715
+2024_06_25__RecognizedCode-11.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.37202797202797205,14.0,715
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,1.9140481481481482,11.8664,27
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.037037037037037,7.0,27
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.2222222222222222,1.0,27
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,2.0,6.854755217391305,82.4594,690
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,2.528985507246377,25.0,690
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,1.0623188405797102,16.0,690
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,1.0,11.296666666666667,32.89,3
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,3.6666666666666665,10.0,3
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,1.6666666666666667,5.0,3
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,2.1390029895366216,170.8891,1338
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.9461883408071748,35.0,1338
+2024_06_25__RecognizedCode-11.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.3041853512705531,26.0,1338
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,4.314115384615385,49.2549,52
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,1.0961538461538463,9.0,52
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.7115384615384616,6.0,52
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,2.0,7.304918582375479,145.922,522
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,2.235632183908046,42.0,522
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,1.128352490421456,18.0,522
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,0.0,0.0,0.0,1
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,0.0,0.0,0.0,1
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.0,0.0,1
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,2.192910662020906,93.9045,1435
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.8048780487804879,20.0,1435
+2024_06_25__RecognizedCode-11.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.32822299651567943,18.0,1435
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,1.7220481481481482,12.8664,27
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.8888888888888888,7.0,27
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.2222222222222222,3.0,27
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,7.7092,22.625554166666667,299.6538,288
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,4.0,7.947916666666667,79.0,288
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.642361111111111,35.0,288
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,3.9466,16.313000000000002,16.313000000000002,28.6794,2
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.5,2.5,5.0,2
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,1.0,3.5,3.5,6.0,2
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,3.4355135135135133,79.8274,407
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,1.1228501228501229,22.0,407
+2024_06_25__RecognizedCode-15.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.47911547911547914,11.0,407
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.2271363636363637,7.4985,11
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.5454545454545454,2.0,11
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.18181818181818182,2.0,11
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,4.9466,17.254319565217394,233.3814,322
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,6.037267080745342,84.0,322
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.111801242236025,26.0,322
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,2.0436708229426435,92.6136,401
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.5910224438902744,10.0,401
+2024_06_25__RecognizedCode-15.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.3541147132169576,15.0,401
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,2.607555,15.8397,40
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,0.95,5.0,40
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.425,3.0,40
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,7.72255,18.973909728506786,356.1225,442
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,4.683257918552036,57.0,442
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,3.1334841628959276,32.0,442
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,15.22095,15.22095,30.4419,2
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,2.0,4.0,2
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,4.0,4.0,8.0,2
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,3.725727677329625,155.8922,719
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.1168289290681501,19.0,719
+2024_06_25__RecognizedCode-15.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.6425591098748261,26.0,719
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,5.691064556962027,80.8274,79
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.759493670886076,18.0,79
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.8227848101265823,11.0,79
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,8.1305,22.240831884057975,324.3362,483
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,3.0,5.563146997929606,55.0,483
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.846790890269151,35.0,483
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,2.0,3.2064285714285714,9.8931,7
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,1.5714285714285714,3.0,7
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.42857142857142855,2.0,7
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,5.440582103134479,287.55,989
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.4186046511627908,39.0,989
+2024_06_25__RecognizedCode-15.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.813953488372093,41.0,989
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,2.782298,20.1809,50
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.18,6.0,50
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.44,4.0,50
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,7.7626,18.067068421052632,380.0331,437
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,3.0,5.073226544622425,46.0,437
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.759725400457666,47.0,437
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,5.0,9.130533333333334,22.3916,3
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,5.0,4.0,7.0,3
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,1.3333333333333333,4.0,3
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,3.5743467422096318,67.3053,706
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.3243626062322946,16.0,706
+2024_06_25__RecognizedCode-15.czi - Scene #5.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.5807365439093485,13.0,706
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,6.0570679487179495,56.9106,78
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,1.3717948717948718,9.0,78
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,1.0128205128205128,10.0,78
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,4.0,14.3201343122102,292.6836,647
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,3.3771251931993818,38.0,647
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.0958268933539412,28.0,647
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,5.5519,6.216863636363637,24.9168,11
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,2.090909090909091,6.0,11
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,1.1818181818181819,5.0,11
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,2.6766859813084105,153.9189,963
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.90134994807892,26.0,963
+2024_06_25__RecognizedCode-17.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.42990654205607476,23.0,963
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.4740895833333332,14.8931,48
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.7916666666666666,7.0,48
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.22916666666666666,2.0,48
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,4.8412,17.911321153846153,211.1471,156
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,5.019230769230769,44.0,156
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.326923076923077,26.0,156
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,1.0,6.5786,5.762575,8.8931,4
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,1.0,3.0,3.0,5.0,4
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.5,0.75,2.0,4
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.6823735802469137,83.4327,405
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.654320987654321,12.0,405
+2024_06_25__RecognizedCode-17.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.2740740740740741,16.0,405
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.626766666666667,16.4717,45
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.9777777777777777,10.0,45
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.17777777777777778,3.0,45
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,2.0,8.499761797752809,179.9929,267
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,3.033707865168539,32.0,267
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,1.1835205992509363,31.0,267
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,0.0,0.0,0.0,2
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,0.0,0.0,0.0,2
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.0,0.0,2
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.7380651972157772,112.4533,862
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.7111368909512761,23.0,862
+2024_06_25__RecognizedCode-17.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.2470997679814385,22.0,862
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,8.461648979591837,156.554,49
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,2.163265306122449,35.0,49
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,1.2040816326530612,18.0,49
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,6.6572499999999994,18.02813917910448,175.9425,268
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,2.0,4.895522388059701,42.0,268
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,2.455223880597015,23.0,268
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,7.3412,20.81295,20.81295,34.2847,2
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,3.0,7.0,7.0,11.0,2
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,1.0,2.0,2.0,3.0,2
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,2.4932744976816075,257.0073,647
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.8438948995363215,36.0,647
+2024_06_25__RecognizedCode-17.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.33075734157650694,17.0,647
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,293.6394,517.028,512.3368123529413,713.8503,170
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,39.0,78.0,80.21176470588236,136.0,170
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,35.0,72.0,72.5764705882353,105.0,170
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,263.218,414.51515000000006,414.51515000000006,565.8123,2
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,35.0,39.0,39.0,43.0,2
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,39.0,44.0,44.0,49.0,2
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,159.3906,569.04705,552.6032648437499,981.5164,128
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,11.0,88.5,87.4765625,168.0,128
+2023_05_23__C1595b_scan2.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,20.0,80.0,77.828125,157.0,128
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,136.8716,496.49255,504.06140514018693,1075.0469,428
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,18.0,87.0,87.30841121495327,186.0,428
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,21.0,73.0,73.8107476635514,129.0,428
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,350.7576,625.6817,608.9237999999999,748.6664,13
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,60.0,100.0,98.84615384615384,148.0,13
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,44.0,83.0,81.46153846153847,116.0,13
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,134.2426,614.01575,607.0193342465753,1184.9482,146
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,34.0,105.0,104.24657534246575,208.0,146
+2023_05_23__C1595b_scan2.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,17.0,90.0,88.76712328767124,181.0,146
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,245.6425,519.63185,518.5464727477478,863.4013,444
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,23.0,80.0,80.21171171171171,145.0,444
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,32.0,73.0,73.75,131.0,444
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,272.6096,482.8769,489.9179342105264,814.5677,38
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,31.0,68.5,72.63157894736842,144.0,38
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,39.0,65.5,65.55263157894737,102.0,38
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,203.2272,530.1451999999999,534.6200698795182,1037.2369,166
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,16.0,80.0,82.50602409638554,179.0,166
+2023_05_23__C1595b_scan2.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,20.0,73.5,74.8855421686747,136.0,166
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,71.0,472.56550000000004,473.4614849041533,827.538,1252
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,17.0,77.0,78.51837060702876,231.0,1252
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,67.0,66.33785942492013,120.0,1252
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,264.2417,491.2048,489.6277432432433,753.9388,74
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,26.0,70.5,70.13513513513513,121.0,74
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,31.0,65.0,64.75675675675676,103.0,74
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,94.0,483.45555,498.82144269662916,1372.5382,534
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,21.0,76.0,79.21348314606742,275.0,534
+2023_05_23__C1595b_scan2.czi - Scene #5.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,69.0,70.34082397003745,177.0,534
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,0.0807080831408776,7.9466,433
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.07159353348729793,4.0,433
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.0023094688221709007,1.0,433
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,0.5,0.5,1.0,2
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,0.5,0.5,1.0,2
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.0,0.0,2
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,0.0,0.0,0.0,1
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,0.0,0.0,0.0,1
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.0,0.0,1
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,0.05333333333333334,3.0,225
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.05333333333333334,3.0,225
+2023_12_11__C1595b_scan3.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.0,0.0,225
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,9.1572,15.03359704918033,103.8808,305
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,5.0,6.377049180327869,43.0,305
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,1.0,1.8754098360655738,12.0,305
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,35.7729,56.75596759259259,444.2911,648
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,14.0,18.10648148148148,114.0,648
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,4.0,6.486111111111111,39.0,648
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,2.0,17.74925,21.898861111111113,87.3793,36
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,2.0,9.5,9.916666666666666,34.0,36
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,2.0,2.638888888888889,12.0,36
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,7.7359,14.90449570610687,510.3055,1048
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,4.0,5.808206106870229,77.0,1048
+2023_06_23__RecognizedCode-2.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,1.0,1.9351145038167938,56.0,1048
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,2.5,6.510701639344262,134.2724,366
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,2.0,4.355191256830601,51.0,366
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.4726775956284153,18.0,366
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,25.747700000000002,52.864545494186046,440.066,688
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,18.0,26.309593023255815,148.0,688
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,4.630813953488372,54.0,688
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,7.5,19.71686,88.332,10
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,7.0,12.1,39.0,10
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,1.5,7.0,10
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,2.0,7.347437530463037,396.6271,1231
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,2.0,4.269699431356621,118.0,1231
+2023_06_23__RecognizedCode-2.czi - Scene #2.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.5897644191714053,51.0,1231
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,2.0,7.7081721649484525,333.6004,291
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,2.0,4.175257731958763,53.0,291
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.6357388316151202,38.0,291
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,16.9332,39.252848039215685,347.2088,408
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,13.0,22.629901960784313,155.0,408
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,1.0,3.0612745098039214,39.0,408
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,8.44655,10.021067857142857,33.7328,28
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,5.5,7.357142857142857,20.0,28
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.6785714285714286,5.0,28
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,1.0,5.369619506172839,221.4616,810
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,1.0,3.454320987654321,109.0,810
+2023_06_23__RecognizedCode-2.czi - Scene #3.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.36790123456790125,34.0,810
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,16.4198,25.19444739130435,263.3753,230
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,10.0,13.73913043478261,68.0,230
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,1.0,2.260869565217391,30.0,230
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,1.0,75.10069999999999,101.0807633116883,458.6559,308
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,1.0,35.5,40.34090909090909,173.0,308
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,7.0,9.470779220779221,48.0,308
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,21.0,51.533950000000004,64.92311666666667,157.7174,6
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,21.0,24.5,32.166666666666664,63.0,6
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,5.0,6.666666666666667,19.0,6
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,13.9332,21.67094779005525,235.5273,724
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,9.0,13.548342541436464,112.0,724
+2023_06_23__RecognizedCode-2.czi - Scene #4.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,1.0,1.7348066298342542,28.0,724
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.0642210382513662,70.4892,732
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.7827868852459017,18.0,732
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Pos: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.08060109289617487,10.0,732
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,3.7626,7.433531914893616,40.3916,47
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,3.0,5.51063829787234,33.0,47
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Neg: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.5319148936170213,4.0,47
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num spots estimated,0.0,1.0,3.6293,26.1809,13
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num single spots,0.0,1.0,2.3846153846153846,10.0,13
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Pos: vgat_Pos,Subcellular: Channel 2: Num clusters,0.0,0.0,0.38461538461538464,5.0,13
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num spots estimated,0.0,0.0,1.3691479452054796,27.3381,292
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num single spots,0.0,0.0,0.9623287671232876,16.0,292
+2024_06_25__RecognizedCode-19.czi - Scene #1.csv,vglut2_Neg: vgat_Neg,Subcellular: Channel 2: Num clusters,0.0,0.0,0.11986301369863013,4.0,292
