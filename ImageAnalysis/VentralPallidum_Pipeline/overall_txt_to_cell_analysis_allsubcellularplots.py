@@ -4,13 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Specify directories
-# Uncomment the desired input type:
-# For CSV files:
-# input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4 - OPRM1TRAINING_WITHCOMPOSITES/detections_withMu_12.6.24_csv"
-
-# For text files:
 input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/detections_iteration4_withMu_12.23.24"
-
 overall_plots_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/SCALEDoutputintensity_overall_plots"
 overall_data_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/SCALEDoutputintensity_overall_data"
 boxplot_directory = os.path.join(overall_plots_directory, "boxplots")
@@ -25,6 +19,15 @@ classifications = [
     "vglut2_Pos: vgat_Pos",
     "vglut2_Neg: vgat_Neg"
 ]
+
+# Define colors for classifications
+colors = {
+    "vglut2_Pos: vgat_Neg": "red",
+    "vglut2_Neg: vgat_Pos": "blue",
+    "vglut2_Pos: vgat_Pos": "purple",
+    "vglut2_Neg: vgat_Neg": "black"
+}
+
 metric_column = "AF568: Cell: Mean"
 
 # Initialize a list to store overall data for all classifications
@@ -36,12 +39,12 @@ for file in os.listdir(input_directory):
         try:
             # Load file and normalize headers
             file_path = os.path.join(input_directory, file)
-            
+
             if file.endswith(".csv"):
                 df = pd.read_csv(file_path, encoding="utf-8")
             elif file.endswith(".txt"):
                 df = pd.read_csv(file_path, delimiter="\t", encoding="utf-8")
-            
+
             df.columns = df.columns.str.strip()
 
             if "Classification" not in df.columns or metric_column not in df.columns:
@@ -61,12 +64,16 @@ for file in os.listdir(input_directory):
 # Convert overall data to DataFrame
 overall_df = pd.DataFrame(overall_distribution_data, columns=["Cell Type", "AF568: Cell: Mean"])
 
-# Calculate global min and max for x-axis and y-axis
+# Calculate global min and max for x-axis
 x_min = overall_df["AF568: Cell: Mean"].min()
 x_max = overall_df["AF568: Cell: Mean"].max()
-y_max = max(
-    overall_df.groupby("Cell Type")["AF568: Cell: Mean"].apply(lambda x: np.histogram(x, bins=20)[0].max())
-)
+
+# Calculate global max for y-axis
+y_max = 0
+for cls in classifications:
+    cls_data = overall_df[overall_df["Cell Type"] == cls]["AF568: Cell: Mean"]
+    if not cls_data.empty:
+        y_max = max(y_max, np.histogram(cls_data, bins=20, range=(x_min, x_max))[0].max())
 
 # Calculate overall descriptive statistics
 overall_statistics_data = []
@@ -88,7 +95,7 @@ for cls in classifications:
 
         # Generate and save histogram for this cell type
         plt.figure()
-        cls_data.hist(bins=20, edgecolor="black", alpha=0.7)
+        cls_data.hist(bins=20, edgecolor="black", alpha=0.7, color=colors[cls], range=(x_min, x_max))
         plt.title(f"Overall Distribution of OPRM1 Intensity Per Cell\n{cls}", fontsize=10)
         plt.xlabel("OPRM1 Intensity Per Cell")
         plt.ylabel("Frequency")
@@ -105,9 +112,9 @@ for cls in classifications:
         cdf = np.arange(1, len(sorted_data) + 1) / len(sorted_data)
 
         plt.figure()
-        plt.plot(sorted_data, cdf, marker="o", linestyle="--", color="blue")
+        plt.plot(sorted_data, cdf, marker="o", linestyle="--", color=colors[cls])
         plt.title(f"CDF of OPRM1 Intensity Per Cell\n{cls}", fontsize=10)
-        plt.xlabel("OPRM1 Intensity Per Cell")
+        plt.xlabel("OPRM1 Intensity")
         plt.ylabel("CDF")
         plt.xlim(x_min, x_max)  # Set consistent x-axis
         plt.tight_layout()
@@ -116,23 +123,27 @@ for cls in classifications:
         plt.savefig(cdf_path)
         plt.close()
 
-# Generate and save box plots for all classifications
+# Generate and save combined CDF plot for all classifications
 plt.figure(figsize=(10, 6))
-overall_df.boxplot(column="AF568: Cell: Mean", by="Cell Type", grid=False, showmeans=True)
-plt.title("Box Plot of OPRM1 Intensity Per Cell Type")
-plt.suptitle("")  # Remove default title
-plt.xlabel("Cell Type")
-plt.ylabel("Cell: Mean OPRM1 Intensity ")
-plt.xticks(rotation=45, ha="right")
+
+for cls in classifications:
+    cls_data = overall_df[overall_df["Cell Type"] == cls]["AF568: Cell: Mean"]
+    if not cls_data.empty:
+        sorted_data = np.sort(cls_data)
+        cdf = np.arange(1, len(sorted_data) + 1) / len(sorted_data)
+        plt.plot(sorted_data, cdf, label=cls, color=colors[cls])  # Add label for legend
+
+plt.title("Overlayed CDF of OPRM1 Intensity Per Cell Type", fontsize=14)
+plt.xlabel("OPRM1 Intensity")
+plt.ylabel("CDF")
+plt.xlim(x_min, x_max)  # Set consistent x-axis
+plt.legend(title="Cell Type", loc='upper left')
 plt.tight_layout()
 
-boxplot_path = os.path.join(boxplot_directory, "Overall_BoxPlot.png")
-plt.savefig(boxplot_path)
+# Save the overlayed CDF plot
+combined_cdf_path = os.path.join(overall_plots_directory, "Overall_Combined_CDF.png")
+plt.savefig(combined_cdf_path)
 plt.close()
 
-# Save overall descriptive statistics to CSV
-overall_statistics_df = pd.DataFrame(overall_statistics_data)
-overall_statistics_output_path = os.path.join(overall_data_directory, "oprm1intensityoverall_descriptive_statistics.csv")
-overall_statistics_df.to_csv(overall_statistics_output_path, index=False)
-print(f"Intensity overall descriptive statistics saved to {overall_statistics_output_path}.")
-print(f"Box plot saved to {boxplot_path}.")
+print(f"Overlayed CDF plot saved to {combined_cdf_path}.")
+
