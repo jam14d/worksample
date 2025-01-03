@@ -2,15 +2,16 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 # Specify directories
 input_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/detections_iteration4_withMu_12.23.24"
 overall_plots_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/SCALEDoutputintensity_overall_plots"
 overall_data_directory = "/Volumes/backup driv/VP_qp_LF - ITERATION4/SCALEDoutputintensity_overall_data"
-boxplot_directory = os.path.join(overall_plots_directory, "boxplots")
+#boxplot_directory = os.path.join(overall_plots_directory, "boxplots")
 os.makedirs(overall_plots_directory, exist_ok=True)
 os.makedirs(overall_data_directory, exist_ok=True)
-os.makedirs(boxplot_directory, exist_ok=True)
+#os.makedirs(boxplot_directory, exist_ok=True)
 
 # Define classifications
 classifications = [
@@ -96,8 +97,8 @@ for cls in classifications:
         # Generate and save histogram for this cell type
         plt.figure()
         cls_data.hist(bins=20, edgecolor="black", alpha=0.7, color=colors[cls], range=(x_min, x_max))
-        plt.title(f"Overall Distribution of OPRM1 Intensity Per Cell\n{cls}", fontsize=10)
-        plt.xlabel("OPRM1 Intensity Per Cell")
+        plt.title(f"Distribution of OPRM1 Intensity For Cell Type\n{cls}", fontsize=10)
+        plt.xlabel("OPRM1 Intensity")
         plt.ylabel("Frequency")
         plt.xlim(x_min, x_max)  # Set consistent x-axis
         plt.ylim(0, y_max)  # Set consistent y-axis
@@ -113,7 +114,7 @@ for cls in classifications:
 
         plt.figure()
         plt.plot(sorted_data, cdf, marker="o", linestyle="--", color=colors[cls])
-        plt.title(f"CDF of OPRM1 Intensity Per Cell\n{cls}", fontsize=10)
+        plt.title(f"CDF of OPRM1 Intensity For Cell Type\n{cls}", fontsize=10)
         plt.xlabel("OPRM1 Intensity")
         plt.ylabel("CDF")
         plt.xlim(x_min, x_max)  # Set consistent x-axis
@@ -146,4 +147,125 @@ plt.savefig(combined_cdf_path)
 plt.close()
 
 print(f"Overlayed CDF plot saved to {combined_cdf_path}.")
+
+
+#overlay histogram
+# Generate and save an overlay histogram for all classifications
+# Generate and save an overlay histogram for all classifications
+plt.figure(figsize=(10, 6))
+
+# Calculate the maximum frequency for consistent y-axis
+max_frequency = 0
+for cls in classifications:
+    cls_data = overall_df[overall_df["Cell Type"] == cls]["AF568: Cell: Mean"]
+    if not cls_data.empty:
+        frequencies, _ = np.histogram(cls_data, bins=20, range=(x_min, x_max))
+        max_frequency = max(max_frequency, frequencies.max())
+
+for cls in classifications:
+    cls_data = overall_df[overall_df["Cell Type"] == cls]["AF568: Cell: Mean"]
+    if not cls_data.empty:
+        plt.hist(
+            cls_data,
+            bins=20,
+            alpha=0.5,  # Transparency for overlay effect
+            label=cls,
+            color=colors[cls],
+            range=(x_min, x_max),
+            density=False  # Use absolute frequencies
+        )
+
+# plt.title("Overlayed Histogram of OPRM1 Intensity Per Cell Type", fontsize=14)
+# plt.xlabel("OPRM1 Intensity")
+# plt.ylabel("Frequency")  # Change label to reflect absolute frequency
+# plt.legend(title="Cell Type", loc='upper right')
+# plt.ylim(0, max_frequency)  # Apply consistent y-axis limit
+# plt.tight_layout()
+
+# # Save the overlay histogram plot
+# overlay_histogram_path = os.path.join(overall_plots_directory, "Overall_Combined_Histogram_Absolute.png")
+# plt.savefig(overlay_histogram_path)
+# plt.close()
+
+# print(f"Overlay histogram with absolute frequency saved to {overlay_histogram_path}.")
+
+# Generate and save a box plot for distributions across classifications
+plt.figure(figsize=(10, 6))
+
+# Use seaborn's boxplot for distribution representation
+sns.boxplot(
+    data=overall_df,
+    x="Cell Type",
+    y="AF568: Cell: Mean",
+    palette=colors
+)
+
+plt.title("Distribution of OPRM1 Intensity Per Cell Type", fontsize=14)
+plt.xlabel("Cell Type")
+plt.ylabel("OPRM1 Intensity")
+plt.xticks(rotation=45)  # Rotate x-axis labels for readability
+plt.tight_layout()
+
+# Save the box plot
+box_plot_path = os.path.join(overall_plots_directory, "Overall_Box_Plot.png")
+plt.savefig(box_plot_path)
+plt.close()
+
+print(f"Box plot saved to {box_plot_path}.")
+
+
+#scatter plot intensity vs avg frequency
+
+# Generate and save a density heatmap scatter plot for intensity vs frequency
+plt.figure(figsize=(12, 8))
+
+# Combine all cell types into a single DataFrame for Seaborn visualization
+density_data = []
+
+# Define bins for intensity and calculate frequencies
+bins = 50  # More bins for finer granularity
+bin_edges = np.linspace(x_min, x_max, bins + 1)
+
+for cls in classifications:
+    cls_data = overall_df[overall_df["Cell Type"] == cls]["AF568: Cell: Mean"]
+    if not cls_data.empty:
+        # Calculate histogram for frequencies
+        frequencies, edges = np.histogram(cls_data, bins=bin_edges)
+        bin_centers = (edges[:-1] + edges[1:]) / 2  # Bin centers
+
+        # Append data for visualization
+        for center, freq in zip(bin_centers, frequencies):
+            density_data.append({"Cell Type": cls, "Intensity": center, "Frequency": freq})
+
+# Convert density data into a DataFrame
+density_df = pd.DataFrame(density_data)
+
+# Plot density heatmap-style scatter plot
+sns.scatterplot(
+    data=density_df,
+    x="Intensity",
+    y="Frequency",
+    hue="Cell Type",
+    palette=colors,
+    style="Cell Type",
+    size="Frequency",
+    sizes=(10, 200),  # Scale for scatter sizes
+    alpha=0.6  # Transparency for overlap
+)
+
+plt.title("Density Scatter Plot: Intensity vs Frequency Per Cell Type", fontsize=16)
+plt.xlabel("OPRM1 Intensity")
+plt.ylabel("Frequency")
+plt.xlim(x_min, x_max)
+plt.legend(title="Cell Type", loc="upper right", bbox_to_anchor=(1.2, 1))
+plt.tight_layout()
+
+# Save the heatmap scatter plot
+heatmap_scatter_path = os.path.join(overall_plots_directory, "Density_Scatter_Intensity_vs_Frequency.png")
+plt.savefig(heatmap_scatter_path)
+plt.close()
+
+print(f"Density scatter plot saved to {heatmap_scatter_path}.")
+
+
 

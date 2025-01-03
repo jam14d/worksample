@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 # Define all paths in a single dictionary (Windows-style)
 paths = {
@@ -51,7 +52,7 @@ for file in filelist:
         print(f"Error processing {file}: {e}")
 
 # Set y-axis maximum for histograms and CDF plots
-y_max = 10000
+y_max = 2500
 
 # Calculate global min and max for x-axis
 x_min = min([min(values) for values in intensity_data.values() if values])
@@ -65,10 +66,10 @@ for cell_type, values in intensity_data.items():
         # Create a histogram
         plt.figure(figsize=(10, 6))
         plt.hist(values, bins=30, color=colors[cell_type], edgecolor='black', alpha=0.7)
-        plt.title(f"Distribution of Oprm1 Intensity for {cell_type.replace('_', ' : ').title()}")
+        plt.title(f"Distribution of Oprm1 Intensity for {cell_type.replace('_', ':').title()}")
         plt.xlabel("Oprm1 Intensity")
         plt.ylabel("Frequency")
-        plt.xlim(x_min, x_max)
+        plt.xlim(x_min, 600)
         plt.ylim(0, y_max)
         plt.grid(True)
         hist_path = os.path.join(plots_dir, f"Distribution_of_oprm1_intensity_{cell_type}.png")
@@ -81,15 +82,15 @@ for cell_type, values in intensity_data.items():
 
         plt.figure(figsize=(10, 6))
         plt.plot(sorted_data, cdf, marker='.', linestyle='none', color=colors[cell_type])
-        plt.title(f"CDF of Oprm1 Intensity for {cell_type.replace('_', ' : ').title()}")
+        plt.title(f"CDF of Oprm1 Intensity for {cell_type.replace('_', ':').title()}")
         plt.xlabel("Oprm1 Intensity")
         plt.ylabel("Cumulative Probability")
-        plt.xlim(x_min, x_max)  # Set consistent x-axis
+        plt.xlim(x_min, 800)  # Set consistent x-axis
         plt.grid(True)
         cdf_path = os.path.join(plots_dir, f"Oprm1_intensity_CDF_{cell_type}.png")
         plt.savefig(cdf_path)
         plt.close()
 
-        print(f"Plots for {cell_type.replace('_', ' ').title()} saved to {plots_dir}")
+        print(f"Plots for {cell_type.replace('_', ':').title()} saved to {plots_dir}")
     else:
-        print(f"No AF568: Cell: Mean data available for {cell_type.replace('_', ' ').title()}.")
+        print(f"No AF568: Cell: Mean data available for {cell_type.title()}.")

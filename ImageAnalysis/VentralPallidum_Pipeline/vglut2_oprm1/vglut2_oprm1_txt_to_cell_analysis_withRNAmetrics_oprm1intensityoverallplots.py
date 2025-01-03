@@ -5,8 +5,8 @@ import numpy as np
 
 # Define all paths in a single dictionary (Windows-style)
 paths = {
-    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vgatwithMu_12.13.24",
-    "raw_annotation": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vgatwithMu_12.13.24"
+    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGLUT2_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24",
+    "raw_annotation": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGLUT2_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24"
 }
 
 # Function to convert Windows paths to Unix-like paths if running in a Unix environment
@@ -29,12 +29,12 @@ filelist = [f for f in os.listdir(paths["raw_detection"]) if f.endswith(".txt")]
 
 # Define cell type classifications and their colors
 classifications = {
-    "vgat_positive_oprm1_negative": ["vgat_Pos", "vgat_Pos: oprm1_Neg"],
-    "vgat_positive_oprm1_positive": ["vgat_Pos: oprm1_Pos"]
+    "vglut2_positive_oprm1_negative": ["vglut2_Pos", "vglut2_Pos: oprm1_Neg"],
+    "vglut2_positive_oprm1_positive": ["vglut2_Pos: oprm1_Pos"]
 }
 colors = {
-    "vgat_positive_oprm1_negative": "blue",
-    "vgat_positive_oprm1_positive": "green"
+    "vglut2_positive_oprm1_negative": "red",
+    "vglut2_positive_oprm1_positive": "orange"
 }
 
 # Initialize a dictionary to collect intensities by cell type
@@ -51,7 +51,7 @@ for file in filelist:
         print(f"Error processing {file}: {e}")
 
 # Set y-axis maximum for histograms and CDF plots
-y_max = 10000
+y_max = 2500
 
 # Calculate global min and max for x-axis
 x_min = min([min(values) for values in intensity_data.values() if values])
@@ -65,10 +65,10 @@ for cell_type, values in intensity_data.items():
         # Create a histogram
         plt.figure(figsize=(10, 6))
         plt.hist(values, bins=30, color=colors[cell_type], edgecolor='black', alpha=0.7)
-        plt.title(f"Distribution of Oprm1 Intensity for {cell_type.replace('_', ' : ').title()}")
+        plt.title(f"Distribution of Oprm1 Intensity for {cell_type.replace('_', ':').title()}")
         plt.xlabel("Oprm1 Intensity")
         plt.ylabel("Frequency")
-        plt.xlim(x_min, x_max)
+        plt.xlim(x_min, 600)
         plt.ylim(0, y_max)
         plt.grid(True)
         hist_path = os.path.join(plots_dir, f"Distribution_of_oprm1_intensity_{cell_type}.png")
@@ -81,15 +81,15 @@ for cell_type, values in intensity_data.items():
 
         plt.figure(figsize=(10, 6))
         plt.plot(sorted_data, cdf, marker='.', linestyle='none', color=colors[cell_type])
-        plt.title(f"CDF of Oprm1 Intensity for {cell_type.replace('_', ' : ').title()}")
+        plt.title(f"CDF of Oprm1 Intensity for {cell_type.replace('_', ':').title()}")
         plt.xlabel("Oprm1 Intensity")
         plt.ylabel("Cumulative Probability")
-        plt.xlim(x_min, x_max)  # Set consistent x-axis
+        plt.xlim(x_min, 800)  # Set consistent x-axis
         plt.grid(True)
         cdf_path = os.path.join(plots_dir, f"Oprm1_intensity_CDF_{cell_type}.png")
         plt.savefig(cdf_path)
         plt.close()
 
-        print(f"Plots for {cell_type.replace('_', ' ').title()} saved to {plots_dir}")
+        print(f"Plots for {cell_type.replace('_', ':').title()} saved to {plots_dir}")
     else:
-        print(f"No AF568: Cell: Mean data available for {cell_type.replace('_', ' ').title()}.")
+        print(f"No AF568: Cell: Mean data available for {cell_type.replace('_', ':').title()}.")

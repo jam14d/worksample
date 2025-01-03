@@ -7,10 +7,10 @@ import pandas as pd
 
 # Define all paths in a single dictionary (Windows-style)
 paths = {
-    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24",
-    "raw_annotation": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24",
-    "detection_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24_CSV",
-    "annotation_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24_CSV"
+    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vgatwithMu_12.13.24",
+    "raw_annotation": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vgatwithMu_12.13.24",
+    "detection_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vgatwithMu_12.13.24_CSV",
+    "annotation_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/annotations_iteration4_vgatwithMu_12.13.24_CSV"
 }
 
 # Function to convert Windows paths to Unix-like paths if running in a Unix environment
