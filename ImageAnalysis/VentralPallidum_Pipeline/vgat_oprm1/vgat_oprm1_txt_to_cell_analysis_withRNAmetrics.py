@@ -118,7 +118,7 @@ for k, file in enumerate(filelist):
         realAnnotations = ano_data[ano_data['Object type'].isin(["Annotation", "PathAnnotationObject"])]
         anoArea = realAnnotations['Area µm^2'].sum() / 1e6 if not realAnnotations.empty else 0
 
-        YellowIntensity = QPYellow_only['AF488: Cell: Mean'].mean() if not QPYellow_only.empty else None
+        YellowIntensity = QPYellow_only['AF568: Cell: Mean'].mean() if not QPYellow_only.empty else None
         blueIntensity = QPblue_only['AF647: Cell: Mean'].mean() if not QPblue_only.empty else None
 
         YellowCellCount = len(QPYellow_only)
@@ -169,5 +169,5 @@ for k, file in enumerate(filelist):
         print(f"Error processing {file}: {e}")
 
 # Write the results to CSV and XLSX
-DataDraft.to_csv("12.16.24_OPRM1CELLCOUNTS.csv", index=False)
-DataDraft.to_excel("12.16.24_OPRM1CELLCOUNTS.xlsx", index=False)
+DataDraft.to_csv("vgat_oprm1_subcellular_metrics.csv", index=False)
+DataDraft.to_excel("vgat_oprm1_subcellular_metrics.xlsx", index=False)

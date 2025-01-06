@@ -7,10 +7,10 @@ import pandas as pd
 
 # Define all paths in a single dictionary (Windows-style)
 paths = {
-    "raw_detection": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/detections_iteration4_withMu_SPOTSIZE_12.13.24",
-    "raw_annotation": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/annotations_iteration4_withMu_SPOTSIZE_12.13.24",
-    "detection_csv": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/detections_iteration4_withMu_SPOTSIZE_12.13.24_CSV",
-    "annotation_csv": r"/Volumes/hnaskolab/Jamie Anne Mortel/BACKUPFROMDRIVE/VP_qp_LF - ITERATION4/annotations_iteration4_withMu_SPOTSIZE_12.13.24_CSV"
+    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGLUT2_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24",
+    "raw_annotation": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGLUT2_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24",
+    "detection_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGLUT2_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24_csv",
+    "annotation_csv": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGLUT2_OPRM1_COMPOSITE/annotations_iteration4_vglut2withMu_12.13.24_csv"
 }
 
 # Function to convert Windows paths to Unix-like paths if running in a Unix environment
@@ -52,11 +52,11 @@ QYellow = "AF568"
 QPPink = "AF647"
 
 Yellow_posName = "oprm1_Pos"
-Yellow_posName_2 = "oprm1_Pos: vglut2_Neg"
+Yellow_posName_2 = "vglut2_Neg: oprm1_Pos"
 Pink_posName = "vglut2_Pos"
-Pink_posName_2 = "oprm1_Neg: vglut2_Pos"
-double_positive = "oprm1_Pos: vglut2_Pos"
-double_negative = "oprm1_Neg: vglut2_Neg"
+Pink_posName_2 = "vglut2_Pos: oprm1_Neg"
+double_positive = "vglut2_Pos: oprm1_Pos"
+double_negative = "vglut2_Neg: oprm1_Neg"
 
 # Additional subcellular metric columns
 subcellular_metrics = [
@@ -118,7 +118,7 @@ for k, file in enumerate(filelist):
         realAnnotations = ano_data[ano_data['Object type'].isin(["Annotation", "PathAnnotationObject"])]
         anoArea = realAnnotations['Area µm^2'].sum() / 1e6 if not realAnnotations.empty else 0
 
-        YellowIntensity = QPYellow_only['AF488: Cell: Mean'].mean() if not QPYellow_only.empty else None
+        YellowIntensity = QPYellow_only['AF568: Cell: Mean'].mean() if not QPYellow_only.empty else None
         PinkIntensity = QPPink_only['AF647: Cell: Mean'].mean() if not QPPink_only.empty else None
 
         YellowCellCount = len(QPYellow_only)
@@ -169,5 +169,5 @@ for k, file in enumerate(filelist):
         print(f"Error processing {file}: {e}")
 
 # Write the results to CSV and XLSX
-DataDraft.to_csv("12.13.24_MU_SUBCELLULARMETRICS_WITHNEG_processed_data_with_subcellular_metrics.csv", index=False)
-DataDraft.to_excel("12.13.24_MU__SUBCELLULARMETRICS_WITHNEG_processed_data_with_subcellular_metrics.xlsx", index=False)
+DataDraft.to_csv("vglut2_oprm1_subcellular_metrics.csv", index=False)
+DataDraft.to_excel("vglut2_oprm1_subcellular_metrics.xlsx", index=False)

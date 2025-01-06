@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import mannwhitneyu, ks_2samp
+from statannotations.Annotator import Annotator
 
 # Define paths for VGAT and VGLUT2 data
 paths = {
@@ -74,45 +75,33 @@ for key in data:
     else:
         data[key] = pd.DataFrame(columns=["AF568: Cell: Mean", "Subcellular: Channel 2: Num spots estimated"])
 
-
-##STATS
-
-
 # Perform statistical tests between VGAT+ and VGLUT2+ groups
 vgat_data = data["vgat_positive_oprm1_positive"]
 vglut2_data = data["vglut2_positive_oprm1_positive"]
 
+stat_results = {}
+
 if not vgat_data.empty and not vglut2_data.empty:
-    # Extract intensity values
     vgat_intensity = vgat_data["AF568: Cell: Mean"]
     vglut2_intensity = vglut2_data["AF568: Cell: Mean"]
 
-    # Mann-Whitney U Test (non-parametric comparison of medians)
+    # Mann-Whitney U Test
     u_stat, u_p_value = mannwhitneyu(vgat_intensity, vglut2_intensity, alternative='two-sided')
-    print(f"Mann-Whitney U Test: U-statistic = {u_stat}, p-value = {u_p_value}")
+    stat_results["Mann-Whitney"] = (u_stat, u_p_value)
 
-    # Kolmogorov-Smirnov Test (non-parametric comparison of distributions)
+    # Kolmogorov-Smirnov Test
     ks_stat, ks_p_value = ks_2samp(vgat_intensity, vglut2_intensity)
-    print(f"Kolmogorov-Smirnov Test: KS-statistic = {ks_stat}, p-value = {ks_p_value}")
+    stat_results["Kolmogorov-Smirnov"] = (ks_stat, ks_p_value)
 
     # Save results to a text file
     stats_results_path = os.path.join(plots_dir, "statistical_tests_results.txt")
     with open(stats_results_path, "w") as f:
         f.write("Statistical Test Results:\n")
-        f.write(f"Mann-Whitney U Test: U-statistic = {u_stat}, p-value = {u_p_value}\n")
-        f.write(f"Kolmogorov-Smirnov Test: KS-statistic = {ks_stat}, p-value = {ks_p_value}\n")
+        for test_name, (stat, p_val) in stat_results.items():
+            f.write(f"{test_name}: Statistic = {stat}, p-value = {p_val}\n")
     print(f"Statistical test results saved to {stats_results_path}")
-else:
-    print("One or both datasets are empty. Cannot perform statistical tests.")
 
-
-
-##PLOTS
-
-
-
-
-# KDE Plot for OPRM1 Intensity
+# KDE Plot
 comparison_data = []
 for cell_type, df in data.items():
     if not df.empty:
@@ -137,62 +126,34 @@ if comparison_data:
     plt.close()
     print(f"KDE comparison plot saved to {kde_path}.")
 
-    # Box Plot
-    formatted_colors = {
-        "Vgat Positive Oprm1 Positive": "green",
-        "Vglut2 Positive Oprm1 Positive": "orange",
-    }
+#boxplot
+# Define a formatted palette that matches the DataFrame's "Cell Type" column
+formatted_colors = {
+    "Vgat Positive Oprm1 Positive": "green",
+    "Vglut2 Positive Oprm1 Positive": "orange",
+}
 
-    plt.figure(figsize=(10, 6))
-    sns.boxplot(data=comparison_df, x="Cell Type", y="Intensity", palette=formatted_colors)
-    plt.title("Comparative Distribution of OPRM1 Intensity for VGAT+ and VGLUT2+ Cells", fontsize=16)
-    plt.xlabel("Cell Type")
-    plt.ylabel("OPRM1 Intensity")
-    plt.tight_layout()
+# Box Plot with Statistical Annotation
+plt.figure(figsize=(10, 6))
+ax = sns.boxplot(
+    data=comparison_df,
+    x="Cell Type",
+    y="Intensity",
+    palette=formatted_colors  # Use the corrected palette
+)
 
-    box_plot_path = os.path.join(plots_dir, "Box_Comparison_VGAT_vs_VGLUT2.png")
-    plt.savefig(box_plot_path)
-    plt.close()
-    print(f"Box plot saved to {box_plot_path}.")
+# Annotator setup
+pairs = [("Vgat Positive Oprm1 Positive", "Vglut2 Positive Oprm1 Positive")]
+annotator = Annotator(ax, pairs, data=comparison_df, x="Cell Type", y="Intensity")
+annotator.set_pvalues([u_p_value])  # Use the Mann-Whitney U-test p-value
+annotator.annotate()
 
-# Scatter plots for Intensity vs. Number of Spots
-for cell_type, df in data.items():
-    if not df.empty:
-        plt.figure(figsize=(10, 6))
-        sns.scatterplot(
-            data=df,
-            x="AF568: Cell: Mean",
-            y="Subcellular: Channel 2: Num spots estimated",
-            alpha=0.6,
-            color=colors[cell_type]
-        )
-        plt.title(f"Intensity vs. Number of Puncta for {cell_type.replace('_', ':').title()}")
-        plt.xlabel("OPRM1 Intensity")
-        plt.ylabel("Number of Puncta")
-        plt.grid(True)
-        plt.tight_layout()
+plt.title("Comparative Distribution of OPRM1 Intensity for VGAT+ and VGLUT2+ Cells", fontsize=16)
+plt.xlabel("Cell Type")
+plt.ylabel("OPRM1 Intensity")
+plt.tight_layout()
 
-        scatter_path = os.path.join(plots_dir, f"Intensity_vs_Puncta_{cell_type}.png")
-        plt.savefig(scatter_path)
-        plt.close()
-        print(f"Scatter plot for {cell_type.replace('_', ':').title()} saved to {plots_dir}")
-
-# Joint plots for combined density and scatter
-for cell_type, df in data.items():
-    if not df.empty:
-        joint_plot = sns.jointplot(
-            data=df,
-            x="AF568: Cell: Mean",
-            y="Subcellular: Channel 2: Num spots estimated",
-            kind="kde",
-            fill=True,
-            color=colors[cell_type]
-        )
-        joint_plot.plot_joint(sns.scatterplot, color=colors[cell_type], alpha=0.5)
-        joint_plot.ax_joint.set_title(f"Intensity vs. Puncta Density for {cell_type.replace('_', ':').title()}", fontsize=12)
-        joint_plot.set_axis_labels("OPRM1 Intensity", "Number of Puncta")
-
-        joint_path = os.path.join(plots_dir, f"Density_vs_Puncta_{cell_type}.png")
-        joint_plot.savefig(joint_path)
-        plt.close()
-        print(f"Joint plot for {cell_type.replace('_', ':').title()} saved to {plots_dir}")
+box_plot_path = os.path.join(plots_dir, "Box_Comparison_VGAT_vs_VGLUT2_with_annotations.png")
+plt.savefig(box_plot_path)
+plt.close()
+print(f"Box plot with statistical annotations saved to {box_plot_path}.")

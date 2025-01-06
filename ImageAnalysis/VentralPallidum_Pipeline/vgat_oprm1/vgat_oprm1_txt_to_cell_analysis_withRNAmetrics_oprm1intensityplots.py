@@ -52,7 +52,7 @@ for file in filelist:
         print(f"Error processing {file}: {e}")
 
 # Set y-axis maximum for histograms and CDF plots
-y_max = 2500
+y_max = 800
 
 # Calculate global min and max for x-axis
 x_min = min([min(values) for values in intensity_data.values() if values])
@@ -69,7 +69,7 @@ for cell_type, values in intensity_data.items():
         plt.title(f"Distribution of Oprm1 Intensity for {cell_type.replace('_', ':').title()}")
         plt.xlabel("Oprm1 Intensity")
         plt.ylabel("Frequency")
-        plt.xlim(x_min, 600)
+        plt.xlim(x_min, 400)
         plt.ylim(0, y_max)
         plt.grid(True)
         hist_path = os.path.join(plots_dir, f"Distribution_of_oprm1_intensity_{cell_type}.png")
