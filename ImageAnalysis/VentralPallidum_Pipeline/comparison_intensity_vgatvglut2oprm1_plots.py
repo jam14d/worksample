@@ -29,7 +29,7 @@ for group in paths:
 
 # Create a "plots" directory in the same location as the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
-plots_dir = os.path.join(script_dir, "oprm1VGATvsVGLUT2_plots")
+plots_dir = os.path.join(script_dir, "oprm1VGATvsVGLUT2_plots_intensity")
 os.makedirs(plots_dir, exist_ok=True)
 
 # Define classifications and colors
@@ -115,7 +115,7 @@ if comparison_data:
         if not df.empty:
             sns.kdeplot(df["AF568: Cell: Mean"], label=cell_type.replace("_", ":").title(), color=colors[cell_type], fill=True, alpha=0.5)
 
-    plt.title("Density Distribution of OPRM1 Intensity for VGAT+ and VGLUT2+ Cells", fontsize=16)
+    plt.title("Density Distribution of OPRM1 Intensity for VGAT+:OPRM1+ and VGLUT2+:OPRM1+ Cells", fontsize=12)
     plt.xlabel("OPRM1 Intensity")
     plt.ylabel("Density")
     plt.legend(title="Cell Type")

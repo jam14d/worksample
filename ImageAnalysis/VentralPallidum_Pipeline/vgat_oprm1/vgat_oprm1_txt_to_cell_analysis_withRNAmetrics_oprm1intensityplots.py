@@ -22,7 +22,7 @@ def convert_to_unix_path(win_path):
 paths = {key: convert_to_unix_path(value) for key, value in paths.items()}
 
 # Create a "plots" directory
-plots_dir = os.path.join(os.path.dirname(paths["raw_detection"]), "plots")
+plots_dir = os.path.join(os.path.dirname(paths["raw_detection"]), "intensity_plots")
 os.makedirs(plots_dir, exist_ok=True)
 
 # Get all detection text files
