@@ -15,146 +15,115 @@ paths = {
     },
 }
 
-# Function to convert Windows paths to Unix-like paths if running in a Unix environment
-def convert_to_unix_path(win_path):
-    if os.name != "nt":
-        win_path = win_path.replace("\\", "/")
-        if win_path[1:3] == ":/":
-            return f"/mnt/{win_path[0].lower()}{win_path[2:]}"
-    return win_path
-
-# Convert all paths to Unix-like if necessary
-for group in paths:
-    paths[group] = {key: convert_to_unix_path(value) for key, value in paths[group].items()}
-
-# Create a "plots" directory in the same location as the script
+# Create a "plots" directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 plots_dir = os.path.join(script_dir, "oprm1VGATvsVGLUT2_plots_puncta")
 os.makedirs(plots_dir, exist_ok=True)
 
-# Define classifications and colors
-classifications = {
-    "vgat_positive_oprm1_positive": ["vgat_Pos: oprm1_Pos"],
-    "vglut2_positive_oprm1_positive": ["vglut2_Pos: oprm1_Pos"],
-}
-colors = {
-    "vgat_positive_oprm1_positive": "green",
-    "vglut2_positive_oprm1_positive": "orange",
+# Define Parent values
+cell_types = {
+    "vgat_positive_oprm1_positive": "Cell (vgat_Pos: oprm1_Pos)",
+    "vglut2_positive_oprm1_positive": "Cell (vglut2_Pos: oprm1_Pos)",
 }
 
-# Initialize a dictionary to collect data for each classification
-data = {key: [] for key in classifications.keys()}
+# Initialize a dictionary to collect data for each cell type
+data = {key: [] for key in cell_types.keys()}
 
-# Helper function to process files and extract relevant data
-def collect_data(paths, classification_key, labels):
-    for file in os.listdir(paths["raw_detection"]):
-        if file.endswith(".txt"):
-            try:
-                det_data = pd.read_csv(os.path.join(paths["raw_detection"], file), sep="\t", encoding="utf-8")
-                if "Classification" not in det_data.columns:
-                    print(f"Skipping file {file}: 'Classification' column is missing.")
-                    continue
-                cell_data = det_data[det_data["Classification"].isin(labels)]
-                data[classification_key].append(cell_data[[
-                    "AF568: Cell: Mean", 
-                    "Subcellular: Channel 2: Num spots estimated"
-                ]].dropna())
-            except UnicodeDecodeError:
-                print(f"Encoding error in file {file}: Skipping.")
-            except Exception as e:
-                print(f"Error processing {file}: {e}")
+# Function to collect data for each cell type
+def collect_data(group, cell_type_key, parent_value):
+    raw_detection_path = paths[group]["raw_detection"]
+    filelist = [f for f in os.listdir(raw_detection_path) if f.endswith(".txt") and not f.startswith("._")]
 
-# Collect data for each classification
-collect_data(paths["vgat"], "vgat_positive_oprm1_positive", classifications["vgat_positive_oprm1_positive"])
-collect_data(paths["vglut2"], "vglut2_positive_oprm1_positive", classifications["vglut2_positive_oprm1_positive"])
+    for file in filelist:
+        try:
+            det_data = pd.read_csv(os.path.join(raw_detection_path, file), sep="\t", encoding="utf-8")
 
-# Combine data for each classification into a single DataFrame
-for key in data:
-    if data[key]:
-        data[key] = pd.concat(data[key], ignore_index=True)
-    else:
-        data[key] = pd.DataFrame(columns=["AF568: Cell: Mean", "Subcellular: Channel 2: Num spots estimated"])
+            if "Parent" not in det_data.columns or "Num spots" not in det_data.columns:
+                print(f"Skipping file {file}: Required columns are missing.")
+                continue
 
-# Perform statistical tests between VGAT+ and VGLUT2+ groups
-vgat_data = data["vgat_positive_oprm1_positive"]
-vglut2_data = data["vglut2_positive_oprm1_positive"]
+            # Filter rows by Parent column for the specific cell type
+            filtered_data = det_data[det_data["Parent"] == parent_value]
+            if not filtered_data.empty:
+                data[cell_type_key].extend(filtered_data["Num spots"].dropna().tolist())
+            else:
+                print(f"No matching data in {file} for {parent_value}.")
+
+        except Exception as e:
+            print(f"Error processing file {file}: {e}")
+
+# Collect data for each cell type
+collect_data("vgat", "vgat_positive_oprm1_positive", cell_types["vgat_positive_oprm1_positive"])
+collect_data("vglut2", "vglut2_positive_oprm1_positive", cell_types["vglut2_positive_oprm1_positive"])
+
+# Perform statistical tests
+vgat_data = pd.Series(data["vgat_positive_oprm1_positive"])
+vglut2_data = pd.Series(data["vglut2_positive_oprm1_positive"])
 
 stat_results = {}
-
 if not vgat_data.empty and not vglut2_data.empty:
-    vgat_subcellularspots = vgat_data["Subcellular: Channel 2: Num spots estimated"]
-    vglut2_subcellularspots = vglut2_data["Subcellular: Channel 2: Num spots estimated"]
-
     # Mann-Whitney U Test
-    u_stat, u_p_value = mannwhitneyu(vgat_subcellularspots, vglut2_subcellularspots, alternative='two-sided')
+    u_stat, u_p_value = mannwhitneyu(vgat_data, vglut2_data, alternative='two-sided')
     stat_results["Mann-Whitney"] = (u_stat, u_p_value)
 
     # Kolmogorov-Smirnov Test
-    ks_stat, ks_p_value = ks_2samp(vgat_subcellularspots, vglut2_subcellularspots)
+    ks_stat, ks_p_value = ks_2samp(vgat_data, vglut2_data)
     stat_results["Kolmogorov-Smirnov"] = (ks_stat, ks_p_value)
 
-    # Save results to a text file
+    # Save statistical test results and descriptive stats to a text file
     stats_results_path = os.path.join(plots_dir, "statistical_tests_results.txt")
     with open(stats_results_path, "w") as f:
-        f.write("Statistical Test Results:\n")
+        f.write("Statistical Test Results and Distribution Statistics:\n")
+        f.write("=" * 50 + "\n\n")
+
+        # Statistical test results
         for test_name, (stat, p_val) in stat_results.items():
             f.write(f"{test_name}: Statistic = {stat}, p-value = {p_val}\n")
-    print(f"Statistical test results saved to {stats_results_path}")
+        f.write("\n")
 
-#comparisondata storage
-comparison_data = []
-for cell_type, df in data.items():
-    if not df.empty:
-        comparison_data.extend([{"Cell Type": cell_type.replace("_", " ").title(), "Puncta Count": val} for val in df["Subcellular: Channel 2: Num spots estimated"]])
+        # Descriptive statistics
+        for cell_type, values in data.items():
+            if values:
+                values_series = pd.Series(values)
+                f.write(f"Cell Type: {cell_type.replace('_', ' ').title()}\n")
+                f.write(f"  Total Cells: {len(values_series)}\n")
+                f.write(f"  Min Puncta Count: {values_series.min()}\n")
+                f.write(f"  Median Puncta Count: {values_series.median()}\n")
+                f.write(f"  Max Puncta Count: {values_series.max()}\n")
+                f.write(f"  Mean Puncta Count: {values_series.mean()}\n")
+                f.write(f"  25th Percentile (Q1): {values_series.quantile(0.25)}\n")
+                f.write(f"  75th Percentile (Q3): {values_series.quantile(0.75)}\n")
+                f.write(f"  Interquartile Range (IQR): {values_series.quantile(0.75) - values_series.quantile(0.25)}\n")
+                f.write("\n")
+    print(f"Statistical test results and stats saved to {stats_results_path}")
 
-if comparison_data:
-    comparison_df = pd.DataFrame(comparison_data)
-
-# # KDE Plot
-    # plt.figure(figsize=(10, 6))
-    # for cell_type, df in data.items():
-    #     if not df.empty:
-    #         sns.kdeplot(df["Subcellular: Channel 2: Num spots estimated"], label=cell_type.replace("_", ":").title(), color=colors[cell_type], fill=True, alpha=0.5)
-
-#     plt.title("Density Distribution of OPRM1 Subcellular Spots for VGAT+ and VGLUT2+ Cells", fontsize=16)
-#     plt.xlabel("OPRM1 Subcellular Spots")
-#     plt.ylabel("Density")
-#     plt.legend(title="Cell Type")
-#     plt.tight_layout()
-
-#     kde_path = os.path.join(plots_dir, "KDE_Comparison_VGAT_vs_VGLUT2.png")
-#     plt.savefig(kde_path)
-#     plt.close()
-#     print(f"KDE comparison plot saved to {kde_path}.")
-
-#boxplot
-# Define a formatted palette that matches the DataFrame's "Cell Type" column
+# Updated palette to match Cell Type labels
 formatted_colors = {
-    "Vgat Positive Oprm1 Positive": "green",
-    "Vglut2 Positive Oprm1 Positive": "orange",
+    "VGAT Positive OPRM1 Positive": "green",
+    "VGLUT2 Positive OPRM1 Positive": "orange",
 }
 
-# Box Plot with Statistical Annotation
-plt.figure(figsize=(10, 6))
-ax = sns.boxplot(
-    data=comparison_df,
-    x="Cell Type",
-    y="Puncta Count",
-    palette=formatted_colors  # Use the corrected palette
-)
+# Create box plot with annotations
+if not vgat_data.empty and not vglut2_data.empty:
+    comparison_data = pd.DataFrame({
+        "Cell Type": ["VGAT Positive OPRM1 Positive"] * len(vgat_data) + ["VGLUT2 Positive OPRM1 Positive"] * len(vglut2_data),
+        "Puncta Count": pd.concat([vgat_data, vglut2_data])
+    })
 
-# Annotator setup
-pairs = [("Vgat Positive Oprm1 Positive", "Vglut2 Positive Oprm1 Positive")]
-annotator = Annotator(ax, pairs, data=comparison_df, x="Cell Type", y="Puncta Count")
-annotator.set_pvalues([u_p_value])  # Use the Mann-Whitney U-test p-value
-annotator.annotate()
+    plt.figure(figsize=(10, 6))
+    ax = sns.boxplot(data=comparison_data, x="Cell Type", y="Puncta Count", palette=formatted_colors)
+    pairs = [("VGAT Positive OPRM1 Positive", "VGLUT2 Positive OPRM1 Positive")]
+    annotator = Annotator(ax, pairs, data=comparison_data, x="Cell Type", y="Puncta Count")
+    annotator.set_pvalues([u_p_value])
+    annotator.annotate()
 
-plt.title("Comparative Distribution of Puncta Count for VGAT+:OPRM1+ and VGLUT2+:OPRM1+ Cells", fontsize=12)
-plt.xlabel("Cell Type")
-plt.ylabel("OPRM1 Puncta Count")
-plt.tight_layout()
+    plt.title("Comparison of Puncta Count for VGAT+ and VGLUT2+ Cells", fontsize=14)
+    plt.xlabel("Cell Type")
+    plt.ylabel("Puncta Count")
+    plt.tight_layout()
 
-box_plot_path = os.path.join(plots_dir, "Box_Comparison_VGAT_vs_VGLUT2_with_annotations.png")
-plt.savefig(box_plot_path)
-plt.close()
-print(f"Box plot with statistical annotations saved to {box_plot_path}.")
+    box_plot_path = os.path.join(plots_dir, "Box_Comparison_VGAT_vs_VGLUT2_with_annotations.png")
+    plt.savefig(box_plot_path)
+    plt.close()
+
+    print(f"Box plot with annotations saved to {box_plot_path}.")

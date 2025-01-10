@@ -1,3 +1,26 @@
-Statistical Test Results:
-Mann-Whitney: Statistic = 1613871.0, p-value = 3.0606893796465825e-22
-Kolmogorov-Smirnov: Statistic = 0.20375116603400664, p-value = 6.212683835104697e-20
+Statistical Test Results and Distribution Statistics:
+==================================================
+
+Mann-Whitney: Statistic = 459131180.0, p-value = 3.517141946123075e-14
+Kolmogorov-Smirnov: Statistic = 0.03334959987059882, p-value = 1.2407006928667258e-08
+
+Cell Type: Vgat Positive Oprm1 Positive
+  Total Cells: 95154
+  Min Puncta Count: 1.0
+  Median Puncta Count: 1.0
+  Max Puncta Count: 60.3824
+  Mean Puncta Count: 2.1330628307795787
+  25th Percentile (Q1): 1.0
+  75th Percentile (Q3): 2.3679
+  Interquartile Range (IQR): 1.3679000000000001
+
+Cell Type: Vglut2 Positive Oprm1 Positive
+  Total Cells: 9315
+  Min Puncta Count: 1.0
+  Median Puncta Count: 1.0
+  Max Puncta Count: 30.3885
+  Mean Puncta Count: 1.8728153515834673
+  25th Percentile (Q1): 1.0
+  75th Percentile (Q3): 1.0
+  Interquartile Range (IQR): 0.0
+

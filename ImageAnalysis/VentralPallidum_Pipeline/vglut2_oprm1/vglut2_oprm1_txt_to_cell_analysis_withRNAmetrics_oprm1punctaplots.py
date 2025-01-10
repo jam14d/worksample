@@ -5,7 +5,7 @@ import numpy as np
 
 # Define paths
 paths = {
-    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - VGAT_OPRM1_COMPOSITE/detections_iteration4_vgatwithMu_12.13.24"
+    "raw_detection": r"/Volumes/backup driv/VP_qp_LF - ITERATION4 - vglut2_OPRM1_COMPOSITE/detections_iteration4_vglut2withMu_12.13.24"
 }
 
 # Create directory for plots
@@ -17,12 +17,12 @@ filelist = [f for f in os.listdir(paths["raw_detection"]) if f.endswith(".txt") 
 
 # Define corrected Parents and colors
 classifications = {
-    "vgat_positive_oprm1_negative": ["Cell (vgat_Pos: oprm1_Neg)"],
-    "vgat_positive_oprm1_positive": ["Cell (vgat_Pos: oprm1_Pos)"]
+    "vglut2_positive_oprm1_negative": ["Cell (vglut2_Pos: oprm1_Neg)"],
+    "vglut2_positive_oprm1_positive": ["Cell (vglut2_Pos: oprm1_Pos)"]
 }
 colors = {
-    "vgat_positive_oprm1_negative": "blue",
-    "vgat_positive_oprm1_positive": "green"
+    "vglut2_positive_oprm1_negative": "blue",
+    "vglut2_positive_oprm1_positive": "orange"
 }
 
 # Initialize data dictionary
@@ -63,8 +63,6 @@ for file in filelist:
     except Exception as e:
         print(f"Error processing {file}: {e}")
 
-
-
 # Generate plots
 for cell_type, values in subcellular_data.items():
     if values:
@@ -82,7 +80,7 @@ for cell_type, values in subcellular_data.items():
         plt.hist(values, bins=30, color=colors[cell_type], edgecolor="black", alpha=0.7)
         plt.title(f"Distribution of Puncta Counts for {cell_type.replace('_', ' ').title()}")
         plt.xlabel("Num Spots")
-        plt.xlim(0,30)
+        plt.xlim(0, 30)  # Set x-axis limits
         plt.ylabel("Frequency")
         plt.grid(True)
         plt.savefig(os.path.join(plots_dir, f"{cell_type}_histogram.png"))
@@ -96,7 +94,7 @@ for cell_type, values in subcellular_data.items():
         plt.plot(sorted_data, cdf, color=colors[cell_type])
         plt.title(f"CDF for {cell_type.replace('_', ' ').title()}")
         plt.xlabel("Num Spots")
-        plt.xlim(0,30)
+        plt.xlim(0, 30)  # Set x-axis limits
         plt.ylabel("Cumulative Probability")
         plt.grid(True)
         plt.savefig(os.path.join(plots_dir, f"{cell_type}_cdf.png"))
