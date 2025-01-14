@@ -1,11 +1,10 @@
 Statistical Test Results and Distribution Statistics:
 ==================================================
 
-Mann-Whitney: Statistic = 459131180.0, p-value = 3.517141946123075e-14
+Mann-Whitney: Statistic = 459131180.0, p-value = 3.5171419461230746e-14
 Kolmogorov-Smirnov: Statistic = 0.03334959987059882, p-value = 1.2407006928667258e-08
 
 Cell Type: Vgat Positive Oprm1 Positive
-  Total Cells: 95154
   Min Puncta Count: 1.0
   Median Puncta Count: 1.0
   Max Puncta Count: 60.3824
@@ -15,7 +14,6 @@ Cell Type: Vgat Positive Oprm1 Positive
   Interquartile Range (IQR): 1.3679000000000001
 
 Cell Type: Vglut2 Positive Oprm1 Positive
-  Total Cells: 9315
   Min Puncta Count: 1.0
   Median Puncta Count: 1.0
   Max Puncta Count: 30.3885

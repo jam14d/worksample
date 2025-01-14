@@ -86,7 +86,7 @@ if not vgat_data.empty and not vglut2_data.empty:
             if values:
                 values_series = pd.Series(values)
                 f.write(f"Cell Type: {cell_type.replace('_', ' ').title()}\n")
-                f.write(f"  Total Cells: {len(values_series)}\n")
+#                f.write(f"  Total Cells: {len(values_series)}\n")
                 f.write(f"  Min Puncta Count: {values_series.min()}\n")
                 f.write(f"  Median Puncta Count: {values_series.median()}\n")
                 f.write(f"  Max Puncta Count: {values_series.max()}\n")
